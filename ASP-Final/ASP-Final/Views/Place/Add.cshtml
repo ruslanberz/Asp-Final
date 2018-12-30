@@ -1,0 +1,598 @@
+﻿@model ASP_Final.Models.VwAddPlace
+<!--============================= SUBPAGE HEADER BG =============================-->
+
+<section style='background-image:url("../../Public/images/add-place.jpg");background-clip:inherit' class="subpage-bg">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="title-block title-block_subpage">
+                    <h2>Add Listing</h2>
+                    <p> <a href="index.html"> Home</a> / Add Listing</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--// SUBPAGE HEADER BG -->
+<!--============================= ADD LISTING =============================-->
+
+<section class="main-block">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="listing-wrap">
+                    <form id="AddForm"  method="post" enctype="multipart/form-data" action="@Url.Action("create","place")">
+                        <!-- General Information -->
+                        <div class="listing-title">
+                            <span class="ti-files"></span>
+                            <h4>General Information</h4>
+                            <p>Write Something General Information About Your Listing</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input id="Name" type="text" name="Name" class="form-control add-listing_form">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Slogan</label>
+                                    <input id="Slogan" type="text" name="Slogan" class="form-control add-listing_form">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <select class="form-control add-listing_form" id="CategoryId" name="CategoryId" onchange="GetServices()">
+                                        <option>Please select category</option>
+                                        @foreach (var item in Model.Categories)
+                                        {
+                                            <option data-id="@item.Id" value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Website</label>
+                                    <input name="Website" id="Website" type="text" class="form-control add-listing_form">
+                                </div>
+                            </div>
+                        </div>
+                        <!--//End General Information -->
+                        <!-- Add Location -->
+                        <div class="listing-title">
+                            <span class="ti-location-pin"></span>
+                            <h4>Full Details</h4>
+                            <p>Write Something General Information About Your Listing</p>
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>City</label>
+                                    <select class="form-control bfh-countries" id="City" name="CityId" data-country="US">
+                                        @foreach (var item in Model.Cities)
+                                        {
+                                            <option data-id="@item.Id" value=@item.Id>@item.Name </option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <input name="Address" id="Address" type="text" class="form-control add-listing_form">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <input name="Phone" id="Phone" type="text" class="form-control add-listing_form">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Youtube</label>
+                                    <input name="Youtube" id="Youtube" type="text" class="form-control add-listing_form">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Facebook</label>
+                                    <input name="Facebook" id="Facebook" type="text" class="form-control add-listing_form">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Twitter</label>
+                                    <input name="Twitter" id="Twitter" type="text" class="form-control add-listing_form">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="Description">Description</label>
+                                    <textarea class="form-control add-listing_form" name="Description" id="Description" rows="3"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <!--//End Add Location -->
+                        <!-- Full Details -->
+                        <!--//End Full Details -->
+                        <!-- Add Gallery -->
+                        <div class="listing-title">
+                            <span class="ti-gallery"></span>
+                            <h4>Add Gallery</h4>
+                            <p>Write Something General Information About Your Listing</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="custom-file">
+                                    <div class="add-gallery-text">
+                                        <i class="ti-gallery"></i>
+                                        <span>Drag &amp; Drop To Change Logo</span>
+                                    </div>
+                                    <input name="files" id="files" type="file"   class="custom-file-input"  multiple >
+                                </div>
+                            </div>
+                        </div>
+                        <!--//End Add Gallery -->
+                        <!-- Amenities -->
+                        <div class="listing-title">
+                            <span class="ti-gift"></span>
+                            <h4>Amenities</h4>
+                            <p>Write Something General Information About Your Listing</p>
+                        </div>
+                        <div class="row" id="services">
+                        </div>
+                        <!--//End Amenities -->
+                        <div class="listing-title">
+                            <span class="ti-location-pin"></span>
+                            <h4>Add Location</h4>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="hidden" name="lat">
+                                    <input type="hidden" name="lng">
+                                    <div id="map" style="height: 400px"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Opening Hours -->
+                        <div class="listing-title">
+                            <span class="ti-time"></span>
+                            <h4>Opening Hours</h4>
+                            <p>Write Something General Information About Your Listing</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+
+                                <div class="md-checkbox">
+                                    <input id="w1" type="checkbox">
+                                    <label for="w1">Monday</label>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-none w11">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="" selected>Opening Time</option>
+                                        <option value="1 :00">1 :00 AM</option>
+                                        <option value="2 :00">2 :00 AM</option>
+                                        <option value="3 :00">3 :00 AM</option>
+                                        <option value="4 :00">4 :00 AM</option>
+                                        <option value="5 :00">5 :00 AM</option>
+                                        <option value="6 :00">6 :00 AM</option>
+                                        <option value="7 :00">7 :00 AM</option>
+                                        <option value="8 :00">8 :00 AM</option>
+                                        <option value="9 :00">9 :00 AM</option>
+                                        <option value="10 :00">10 :00 AM</option>
+                                        <option value="11 :00">11 :00 AM</option>
+                                        <option value="12 :00">12 :00 AM</option>
+                                        <option value="1 :00">1 :00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-none w12">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="0" selected>Closing Time</option>
+                                        <option value="1 :00">2 :00 PM</option>
+                                        <option value="2 :00">2 :00 PM</option>
+                                        <option value="3 :00">3 :00 PM</option>
+                                        <option value="4 :00">4 :00 PM</option>
+                                        <option value="5 :00">5 :00 PM</option>
+                                        <option value="6 :00">6 :00 PM</option>
+                                        <option value="7 :00">7 :00 PM</option>
+                                        <option value="8 :00">8 :00 PM</option>
+                                        <option value="9 :00">9 :00 PM</option>
+                                        <option value="10 :00">10 :00 PM</option>
+                                        <option value="11 :00">11 :00 PM</option>
+                                        <option value="12 :00">12 :00 PM</option>
+                                        <option value="1 :00">1 :00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="md-checkbox">
+                                    <input id="w2" type="checkbox">
+                                    <label for="w2">Tuesday</label>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-none w21">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="" selected>Opening Time</option>
+                                        <option value="1 :00 AM">1 :00 AM</option>
+                                        <option value="2 :00 AM">2 :00 AM</option>
+                                        <option value="3 :00 AM">3 :00 AM</option>
+                                        <option value="4 :00 AM">4 :00 AM</option>
+                                        <option value="5 :00 AM">5 :00 AM</option>
+                                        <option value="6 :00 AM">6 :00 AM</option>
+                                        <option value="7 :00 AM">7 :00 AM</option>
+                                        <option value="8 :00 AM">8 :00 AM</option>
+                                        <option value="9 :00 AM">9 :00 AM</option>
+                                        <option value="10 :00 AM">10 :00 AM</option>
+                                        <option value="11 :00 AM">11 :00 AM</option>
+                                        <option value="12 :00 AM">12 :00 AM</option>
+                                        <option value="1 :00 PM">1 :00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-none w22">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="0" selected>Closing Time</option>
+                                        <option value="1 :00 PM">2 :00 PM</option>
+                                        <option value="2 :00 PM">2 :00 PM</option>
+                                        <option value="3 :00 PM">3 :00 PM</option>
+                                        <option value="4 :00 PM">4 :00 PM</option>
+                                        <option value="5 :00 PM">5 :00 PM</option>
+                                        <option value="6 :00 PM">6 :00 PM</option>
+                                        <option value="7 :00 PM">7 :00 PM</option>
+                                        <option value="8 :00 PM">8 :00 PM</option>
+                                        <option value="9 :00 PM">9 :00 PM</option>
+                                        <option value="10 :00 PM">10 :00 PM</option>
+                                        <option value="11 :00 PM">11 :00 PM</option>
+                                        <option value="12 :00 PM">12 :00 PM</option>
+                                        <option value="1 :00 AM">1 :00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="md-checkbox">
+                                    <input id="w3" type="checkbox">
+                                    <label for="w3">Wednesday</label>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-none w31">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="0" selected>Opening Time</option>
+                                        <option value="1 :00 AM">1 :00 AM</option>
+                                        <option value="2 :00 AM">2 :00 AM</option>
+                                        <option value="3 :00 AM">3 :00 AM</option>
+                                        <option value="4 :00 AM">4 :00 AM</option>
+                                        <option value="5 :00 AM">5 :00 AM</option>
+                                        <option value="6 :00 AM">6 :00 AM</option>
+                                        <option value="7 :00 AM">7 :00 AM</option>
+                                        <option value="8 :00 AM">8 :00 AM</option>
+                                        <option value="9 :00 AM">9 :00 AM</option>
+                                        <option value="10 :00 AM">10 :00 AM</option>
+                                        <option value="11 :00 AM">11 :00 AM</option>
+                                        <option value="12 :00 AM">12 :00 AM</option>
+                                        <option value="1 :00 PM">1 :00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-none w32">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="0" selected>Closing Time</option>
+                                        <option value="1 :00 PM">2 :00 PM</option>
+                                        <option value="2 :00 PM">2 :00 PM</option>
+                                        <option value="3 :00 PM">3 :00 PM</option>
+                                        <option value="4 :00 PM">4 :00 PM</option>
+                                        <option value="5 :00 PM">5 :00 PM</option>
+                                        <option value="6 :00 PM">6 :00 PM</option>
+                                        <option value="7 :00 PM">7 :00 PM</option>
+                                        <option value="8 :00 PM">8 :00 PM</option>
+                                        <option value="9 :00 PM">9 :00 PM</option>
+                                        <option value="10 :00 PM">10 :00 PM</option>
+                                        <option value="11 :00 PM">11 :00 PM</option>
+                                        <option value="12 :00 PM">12 :00 PM</option>
+                                        <option value="1 :00 AM">1 :00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="md-checkbox">
+                                    <input id="w4" type="checkbox">
+                                    <label for="w4">Thursday</label>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-none  w41">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="" selected>Opening Time</option>
+                                        <option value="1 :00 AM">1 :00 AM</option>
+                                        <option value="2 :00 AM">2 :00 AM</option>
+                                        <option value="3 :00 AM">3 :00 AM</option>
+                                        <option value="4 :00 AM">4 :00 AM</option>
+                                        <option value="5 :00 AM">5 :00 AM</option>
+                                        <option value="6 :00 AM">6 :00 AM</option>
+                                        <option value="7 :00 AM">7 :00 AM</option>
+                                        <option value="8 :00 AM">8 :00 AM</option>
+                                        <option value="9 :00 AM">9 :00 AM</option>
+                                        <option value="10 :00 AM">10 :00 AM</option>
+                                        <option value="11 :00 AM">11 :00 AM</option>
+                                        <option value="12 :00 AM">12 :00 AM</option>
+                                        <option value="1 :00 PM">1 :00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-none w42">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="0" selected>Closing Time</option>
+                                        <option value="1 :00 PM">2 :00 PM</option>
+                                        <option value="2 :00 PM">2 :00 PM</option>
+                                        <option value="3 :00 PM">3 :00 PM</option>
+                                        <option value="4 :00 PM">4 :00 PM</option>
+                                        <option value="5 :00 PM">5 :00 PM</option>
+                                        <option value="6 :00 PM">6 :00 PM</option>
+                                        <option value="7 :00 PM">7 :00 PM</option>
+                                        <option value="8 :00 PM">8 :00 PM</option>
+                                        <option value="9 :00 PM">9 :00 PM</option>
+                                        <option value="10 :00 PM">10 :00 PM</option>
+                                        <option value="11 :00 PM">11 :00 PM</option>
+                                        <option value="12 :00 PM">12 :00 PM</option>
+                                        <option value="1 :00 AM">1 :00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="md-checkbox">
+                                    <input id="w5" type="checkbox">
+                                    <label for="w5">Friday</label>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-none w51">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="" selected>Opening Time</option>
+                                        <option value="1 :00 AM">1 :00 AM</option>
+                                        <option value="2 :00 AM">2 :00 AM</option>
+                                        <option value="3 :00 AM">3 :00 AM</option>
+                                        <option value="4 :00 AM">4 :00 AM</option>
+                                        <option value="5 :00 AM">5 :00 AM</option>
+                                        <option value="6 :00 AM">6 :00 AM</option>
+                                        <option value="7 :00 AM">7 :00 AM</option>
+                                        <option value="8 :00 AM">8 :00 AM</option>
+                                        <option value="9 :00 AM">9 :00 AM</option>
+                                        <option value="10 :00 AM">10 :00 AM</option>
+                                        <option value="11 :00 AM">11 :00 AM</option>
+                                        <option value="12 :00 AM">12 :00 AM</option>
+                                        <option value="1 :00 PM">1 :00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-none w52">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="0" selected>Closing Time</option>
+                                        <option value="1 :00 PM">2 :00 PM</option>
+                                        <option value="2 :00 PM">2 :00 PM</option>
+                                        <option value="3 :00 PM">3 :00 PM</option>
+                                        <option value="4 :00 PM">4 :00 PM</option>
+                                        <option value="5 :00 PM">5 :00 PM</option>
+                                        <option value="6 :00 PM">6 :00 PM</option>
+                                        <option value="7 :00 PM">7 :00 PM</option>
+                                        <option value="8 :00 PM">8 :00 PM</option>
+                                        <option value="9 :00 PM">9 :00 PM</option>
+                                        <option value="10 :00 PM">10 :00 PM</option>
+                                        <option value="11 :00 PM">11 :00 PM</option>
+                                        <option value="12 :00 PM">12 :00 PM</option>
+                                        <option value="1 :00 AM">1 :00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="md-checkbox">
+                                    <input id="w6" type="checkbox">
+                                    <label for="w6">Saturday</label>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-none w61">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="" selected>Opening Time</option>
+                                        <option value="1 :00 AM">1 :00 AM</option>
+                                        <option value="2 :00 AM">2 :00 AM</option>
+                                        <option value="3 :00 AM">3 :00 AM</option>
+                                        <option value="4 :00 AM">4 :00 AM</option>
+                                        <option value="5 :00 AM">5 :00 AM</option>
+                                        <option value="6 :00 AM">6 :00 AM</option>
+                                        <option value="7 :00 AM">7 :00 AM</option>
+                                        <option value="8 :00 AM">8 :00 AM</option>
+                                        <option value="9 :00 AM">9 :00 AM</option>
+                                        <option value="10 :00 AM">10 :00 AM</option>
+                                        <option value="11 :00 AM">11 :00 AM</option>
+                                        <option value="12 :00 AM">12 :00 AM</option>
+                                        <option value="1 :00 PM">1 :00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-none w62">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="0" selected>Closing Time</option>
+                                        <option value="1 :00 PM">2 :00 PM</option>
+                                        <option value="2 :00 PM">2 :00 PM</option>
+                                        <option value="3 :00 PM">3 :00 PM</option>
+                                        <option value="4 :00 PM">4 :00 PM</option>
+                                        <option value="5 :00 PM">5 :00 PM</option>
+                                        <option value="6 :00 PM">6 :00 PM</option>
+                                        <option value="7 :00 PM">7 :00 PM</option>
+                                        <option value="8 :00 PM">8 :00 PM</option>
+                                        <option value="9 :00 PM">9 :00 PM</option>
+                                        <option value="10 :00 PM">10 :00 PM</option>
+                                        <option value="11 :00 PM">11 :00 PM</option>
+                                        <option value="12 :00 PM">12 :00 PM</option>
+                                        <option value="1 :00 AM">1 :00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="md-checkbox">
+                                    <input class="zz" id="w7" type="checkbox">
+                                    <label for="w7">Sunday</label>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-none w71">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="" selected>Opening Time</option>
+                                        <option value="1 :00 AM">1 :00 AM</option>
+                                        <option value="2 :00 AM">2 :00 AM</option>
+                                        <option value="3 :00 AM">3 :00 AM</option>
+                                        <option value="4 :00 AM">4 :00 AM</option>
+                                        <option value="5 :00 AM">5 :00 AM</option>
+                                        <option value="6 :00 AM">6 :00 AM</option>
+                                        <option value="7 :00 AM">7 :00 AM</option>
+                                        <option value="8 :00 AM">8 :00 AM</option>
+                                        <option value="9 :00 AM">9 :00 AM</option>
+                                        <option value="10 :00 AM">10 :00 AM</option>
+                                        <option value="11 :00 AM">11 :00 AM</option>
+                                        <option value="12 :00 AM">12 :00 AM</option>
+                                        <option value="1 :00 PM">1 :00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-none w72">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="0" selected>Closing Time</option>
+                                        <option value="1 :00 PM">2 :00 PM</option>
+                                        <option value="2 :00 PM">2 :00 PM</option>
+                                        <option value="3 :00 PM">3 :00 PM</option>
+                                        <option value="4 :00 PM">4 :00 PM</option>
+                                        <option value="5 :00 PM">5 :00 PM</option>
+                                        <option value="6 :00 PM">6 :00 PM</option>
+                                        <option value="7 :00 PM">7 :00 PM</option>
+                                        <option value="8 :00 PM">8 :00 PM</option>
+                                        <option value="9 :00 PM">9 :00 PM</option>
+                                        <option value="10 :00 PM">10 :00 PM</option>
+                                        <option value="11 :00 PM">11 :00 PM</option>
+                                        <option value="12 :00 PM">12 :00 PM</option>
+                                        <option value="1 :00 AM">1 :00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="btn-wrap btn-wrap2">
+                                    <button type="submit" id="PlaceAddButton" class="btn btn-simple">SUBMIT LISTING</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--//End Opening Hours -->
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+    function GetServices() {
+
+        var a = Number($("#CategoryId option:selected").data("id"));
+        $('#services').html('');
+
+
+        $.ajax({
+
+            url: "/place/GetServices",
+            type: "post",
+            dataType: "json",
+            data: { id: a },
+
+            success: function (response) {
+                if (response.status === 404) {
+
+                }
+
+                if (response.status === 200) {
+
+                    for (var i = 0; i < response.list.length; i++) {
+
+
+                        $("#services").append('<div class="col-md-4 responsive-wrap"><div class="md-checkbox"><input id="i' + response.list[i] + '" data-id="' + response.list[i] + '" type="checkbox"><label for="i' + response.list[i] + '">' + response.srvc[i] + '</label></div></div >')
+                    }
+                }
+
+
+            }
+
+
+
+        });
+
+    }
+
+</script>
+
+@section scripts{
+
+<script src="~/Public/js/map.js"></script>
+<script src="~/Public/js/addplace.js"></script>
+
+
+}

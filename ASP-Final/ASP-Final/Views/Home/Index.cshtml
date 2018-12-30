@@ -1,0 +1,428 @@
+﻿@model ASP_Final.Models.VwHomeIndex
+
+@{
+    ViewBag.Title = "LocalNavi";
+}
+<!--============================= MAIN TITLE =============================-->
+<section class="hero-wrap d-flex align-items-center home-one-hero">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="hero-title">
+                <h1>What’s your plan today?</h1>
+                <h3>Find out perfect place to hangout in your city from over 2581 listings </h3>
+            </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-12">
+                <form>
+                    <div class="search-box">
+                        <div class="row justify-content-center">
+                            <div class="col-md-5">
+                                <div class="search-box1">
+                                    <div class="search-box-title">
+                                        <input type="text" name="#" class="search-form" placeholder="Ex: Restaurant, Shopping, Coffee. etc">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="search-box2">
+                                    <div class="search-box-title">
+                                        <input type="text" name="#" class="search-form" placeholder="Ex: In or Around City, State or Zip">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="search-button">
+                                    <a href="#" class="btn btn-simple">Search</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!--//END MAIN TITLE -->
+
+<section class="gray pb-40 pt-40">
+    <div class="container p-cat-bg">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="popular-link-wrap">
+                    <h6>BROWSE POPULAR IN YOUR CITY</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="demo">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div id="owl-example" class="owl-carousel">
+                        @foreach (var item in Model.Categories)
+                        {
+                            <a href="javascript:none()">
+                                <div class="item card orange">
+                                    <i class="fa @item.Icon fa-3x"></i>
+                                    <h4>@item.Name</h4>
+                                </div>
+                            </a>
+                        }
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+
+<!-- Start about Area -->
+
+<section class="section-gap info-area" id="about">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-40 col-lg-8">
+                <div class="title text-center">
+                    <h2 class="mb-10">Why Choose LocalNavi Your Happiness Partner</h2>
+                    <p>Who are in extremely love with eco friendly system.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="single-info row mt-40">
+            <div class="col-lg-6 col-md-12 mt-100 text-center no-padding info-left">
+                <div class="info-thumb">
+                    <img src="https://via.placeholder.com/555x650.jpg" class="img-fluid" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 no-padding info-rigth">
+                <div class="info-content">
+                    <h2 class="pb-30">We Realize that <br>you deserve something <br>extraordinary</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                    <br>
+                    <p>
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteur sint occaecat cupidatat non proident.
+                    </p>
+                    <br>
+                    <p>
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                        laudantium, totam rem aperiam.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- End about Area -->
+<!--============================= FEATURED LISTING =============================-->
+
+<section class="main-block featured-wrap">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="title-block">
+                    <h2>Featured Listings</h2>
+                    <p>These listings are featured and rated popular by our community</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 card-1">
+                <div class="card">
+                    <img class="card-img-top" src="https://via.placeholder.com/1920x1080.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Kerla Coffee House</h5>
+                        <ul class="card-rating d-flex justify-content-between align-items-center">
+                            <li class="card-rating-green">4.5</li>
+                            <li class="flex-grow-1">51 ratings</li>
+                            <li class="category"><i class="fa fa-coffee"></i> Cafe</li>
+                        </ul>
+                        <p class="card-text">
+                            Sed ut perspiciatis unde omnis iste natus error sit vento volupt
+                            accusantium doloremque laudantium, totam rem aperiam, eaque dicta sunt explicabo.
+                        </p>
+                    </div>
+                    <div class="card-bottom">
+                        <p><i class="ti-location-pin"></i>INDIA</p>
+                        <span class="open-close_green">Open Now</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 card-2">
+                <div class="card">
+                    <img class="card-img-top" src="https://via.placeholder.com/1920x1080.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">LeFesto Hotel</h5>
+                        <ul class="card-rating d-flex justify-content-between align-items-center">
+                            <li class="card-rating-green">4.2</li>
+                            <li class="flex-grow-1">72 ratings</li>
+                            <li class="category"><i class="fa fa-hotel"></i> Hotel</li>
+                        </ul>
+                        <p class="card-text">
+                            Sed ut perspiciatis unde omnis iste natus error sit vento volupt
+                            accusantium doloremque laudantium, totam rem aperiam, eaque dicta sunt explicabo.
+                        </p>
+                    </div>
+                    <div class="card-bottom">
+                        <p><i class="ti-location-pin"></i>SINGAPORE</p>
+                        <span class="open-close_green">Open Now</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 card-2">
+                <div class="card card-last">
+                    <img class="card-img-top" src="https://via.placeholder.com/1920x1080.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Golden Band</h5>
+                        <ul class="card-rating d-flex justify-content-between align-items-center">
+                            <li class="card-rating-yellow">3.5</li>
+                            <li class="flex-grow-1">46 ratings</li>
+                            <li class="category"><i class="fa fa-music"></i> Music</li>
+                        </ul>
+                        <p class="card-text">
+                            Sed ut perspiciatis unde omnis iste natus error sit vento volupt
+                            accusantium doloremque laudantium, totam rem aperiam, eaque dicta sunt explicabo.
+                        </p>
+                    </div>
+                    <div class="card-bottom">
+                        <p><i class="ti-location-pin"></i>UNITED STATES</p>
+                        <span>Closed Now</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!--//END FEATURED LISTING -->
+<!--============================= DETAILED ITEM  =============================-->
+
+<section class="main-block gray">
+    <div class="container-fluid country-cat">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="title-block">
+                    <h2>Our Top Destinations</h2>
+                    <p>Discover & connect with great local businesses around the world.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="#">
+                    <div class="grid">
+                        <img src="https://via.placeholder.com/1334x1280.jpg" alt="#" class="img-fluid">
+                        <div class="effect-caption-wrap">
+                            <h3>India</h3>
+                            <p class="listing">2400+ Listings</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-6">
+                <div class="row detailed-item-mr">
+                    <div class="col-md-12">
+                        <a href="#">
+                            <div class="grid">
+                                <img src="https://via.placeholder.com/1920x875.jpg" alt="#" class="img-fluid">
+                                <div class="effect-caption-wrap">
+                                    <h3>New York</h3>
+                                    <p class="listing">3100+ Listings</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="#">
+                            <div class="grid">
+                                <img src="https://via.placeholder.com/1000x963.jpg" alt="#" class="img-fluid">
+                                <div class="effect-caption-wrap">
+                                    <h3>Singapore</h3>
+                                    <p class="listing">900+ Listings</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="#">
+                            <div class="grid">
+                                <img src="https://via.placeholder.com/1000x963.jpg" alt="#" class="img-fluid">
+                                <div class="effect-caption-wrap">
+                                    <h3>California</h3>
+                                    <p class="listing">850+ Listings</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--//END DETAILED ITEM -->
+<!--============================= HOW IT WORKS  =============================-->
+
+<section class="main-block howit-work-wrap">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="title-block">
+                    <h2>How it works?</h2>
+                    <p>Its really simple. Follow the steps and get started today!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="howit-bg"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="howit-icon-wrap">
+                    <div class="howit-img-block">
+                        <img class="howit-svg" src="~/Public/images/search-listing-icon.svg">
+                    </div>
+                    <h4>Search Listing</h4>
+                    <p>Start by searching for what you want to do today. Choose your city and start exploring!</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="howit-icon-wrap">
+                    <div class="howit-img-block">
+                        <img class="howit-svg" src="~/Public/images/business-icon.svg">
+                    </div>
+                    <h4>Choose a business</h4>
+                    <p>
+                        Search and filter hundreds of listings, read reviews, explore photos and find the perfect
+                        spot
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="howit-icon-wrap">
+                    <div class="howit-img-block">
+                        <img class="howit-svg" src="~/Public/images/enjoy-icon.svg">
+                    </div>
+                    <h4>Enjoy your day</h4>
+                    <p>Go and have a good time or even make a booking directly from the listing page. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--//END HOW IT WORKS -->
+<!--============================= NEWS & ARTICLE =============================-->
+
+<section class="main-block gray">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="title-block">
+                    <h2>News & Articles</h2>
+                    <p>Browse the latest news and articles from our blog.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-3 article-first">
+                <div class="news-block">
+                    <img src="https://via.placeholder.com/960x1028.jpg" alt="#" class="img-fluid">
+                    <div class="news-title">
+                        <p>Nov 18, 2018 - Restaurants</p>
+                        <a href="#">
+                            <h5>Lorem ipsum dolor sit amet consectetur adipiscing</h5>
+                        </a>
+                        <p>By <a href="#">Ruchika Megh</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 article-first">
+                <div class="news-block">
+                    <img src="https://via.placeholder.com/960x1028.jpg" alt="#" class="img-fluid">
+                    <div class="news-title">
+                        <p>Nov 18, 2018 - Travelling</p>
+                        <a href="">
+                            <h5>Lorem ipsum dolor sit amet consectetur adipiscing</h5>
+                        </a>
+                        <p>By <a href="#">Allen Martin</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 article-first">
+                <div class="news-block">
+                    <img src="https://via.placeholder.com/960x1028.jpg" alt="#" class="img-fluid">
+                    <div class="news-title">
+                        <p>Nov 18, 2018 - Culture</p>
+                        <a href="">
+                            <h5>Lorem ipsum dolor sit amet consectetur adipiscing</h5>
+                        </a>
+                        <p>By <a href="#">David Truce</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 article-first">
+                <div class="news-block">
+                    <img src="https://via.placeholder.com/960x1028.jpg" alt="#" class="img-fluid">
+                    <div class="news-title">
+                        <p>Nov 18, 2018 - Events</p>
+                        <a href="">
+                            <h5>Lorem ipsum dolor sit amet consectetur adipiscing</h5>
+                        </a>
+                        <p>By <a href="#">Charles S</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="btn-wrap">
+                    <a href="blog.html" class="btn btn-simple">Visit our Blog →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--//END NEWS & ARTICLE -->
+<!--============================= ADD LISTING =============================-->
+
+<section class="main-block">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="title-block">
+                    <h2>Reach Millions of People</h2>
+                    <p>Add your business infront of millions and earn 3x profits from our tool</p>
+                </div>
+                <div class="btn-wrap btn-wrap2">
+                    <a href="add-listing.html" class="btn btn-simple">Add your Listing →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--//END ADD LISTING -->
