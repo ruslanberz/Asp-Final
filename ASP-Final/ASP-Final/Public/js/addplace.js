@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     var ser = [];
-
+    
     $(document).on("click", "#services input", function () {
 
 
@@ -124,4 +124,7 @@
         "hideMethod": "fadeOut"
     }
 
+
+   
 });
+

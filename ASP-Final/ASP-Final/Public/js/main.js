@@ -1,6 +1,50 @@
 ﻿$(document).ready(function () {
 
+    $("#autocomplete").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "/Home/Autocomplete",
+                type: "POST",
+                dataType: "json",
+                data: { Prefix: $("#autocomplete").val() },
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return { label: item.Name, value: item.Name };
+                    }))
 
+                }
+            })
+        },
+        messages: {
+            noResults: "",
+            results: function (count) {
+                return count + (count > 1 ? ' results' : ' result ') + ' found';
+            }
+        }
+    });
+
+    $("#autocompletec").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "/Home/AutocompleteCity",
+                type: "POST",
+                dataType: "json",
+                data: { Prefix: $("#autocompletec").val() },
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return { label: item.Name, value: item.Name };
+                    }))
+
+                }
+            })
+        },
+        messages: {
+            noResults: "",
+            results: function (count) {
+                return count + (count > 1 ? ' results' : ' result ') + ' found';
+            }
+        }
+    });
    //Map point add finish
 
 
@@ -145,3 +189,4 @@
   
  
 });
+

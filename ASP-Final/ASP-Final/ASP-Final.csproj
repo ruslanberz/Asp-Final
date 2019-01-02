@@ -264,6 +264,8 @@
     <Content Include="Public\css\bootstrap-formhelpers.min.css" />
     <Content Include="Public\css\bootstrap.min.css" />
     <Content Include="Public\css\font-awesome.min.css" />
+    <Content Include="Public\css\jquery-ui.css" />
+    <Content Include="Public\css\jquery-ui.min.css" />
     <Content Include="Public\css\magnific-popup.css" />
     <Content Include="Public\css\owl.carousel.min.css" />
     <Content Include="Public\css\owl.theme.default.min.css" />
@@ -272,6 +274,10 @@
     <Content Include="Public\css\style.css" />
     <Content Include="Public\css\swiper.min.css" />
     <Content Include="Public\css\themify-icons.css" />
+    <Content Include="Public\css\easy-autocomplete.css" />
+    <Content Include="Public\css\easy-autocomplete.min.css" />
+    <Content Include="Public\css\easy-autocomplete.themes.css" />
+    <Content Include="Public\css\easy-autocomplete.themes.min.css" />
     <Content Include="Public\fonts\fontawesome-webfont.svg" />
     <Content Include="Public\fonts\Simple-Line-Icons.svg" />
     <Content Include="Public\fonts\slick.svg" />
@@ -293,8 +299,11 @@
     <Content Include="Public\images\nav-icon.png" />
     <Content Include="Public\images\paypal.png" />
     <Content Include="Public\images\search-listing-icon.svg" />
+    <Content Include="Public\js\jquery-ui.min.js" />
+    <Content Include="Public\js\jquery.autocomplete.min.js" />
     <Content Include="Public\js\addplace.js" />
     <Content Include="Public\js\gmaps.js" />
+    <Content Include="Public\js\jquery.easy-autocomplete.min.js" />
     <Content Include="Public\js\jquery.form-validator.min.js" />
     <Content Include="Public\js\bootstrap-formhelpers.js" />
     <Content Include="Public\js\bootstrap-formhelpers.min.js" />

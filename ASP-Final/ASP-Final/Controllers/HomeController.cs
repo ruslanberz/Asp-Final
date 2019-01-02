@@ -165,6 +165,28 @@ namespace ASP_Final.Controllers
 
             }, JsonRequestBehavior.AllowGet);
         }
-      
+
+        [HttpPost]
+
+        public JsonResult Autocomplete(string Prefix)
+        {
+
+            var Countries = (from c in db.Categories
+                             where c.Name.ToLower().StartsWith(Prefix.ToLower())
+                             select new { c.Name, c.Id });
+            return Json(Countries, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+
+        public JsonResult AutocompleteCity(string Prefix)
+        {
+
+            var Cities = (from c in db.Cities
+                             where c.Name.ToLower().StartsWith(Prefix.ToLower())
+                             select new { c.Name, c.Id });
+            return Json(Cities, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
