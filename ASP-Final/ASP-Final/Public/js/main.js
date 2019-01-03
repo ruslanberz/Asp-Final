@@ -47,6 +47,19 @@
     });
    //Map point add finish
 
+    $("#placesearch").click(function (ex) {
+        ex.preventDefault();
+        var name = $("#autocomplete").val();
+        var city = $("#autocompletec").val();
+        if (name == "" && city == "") {
+            toastr["error"]("Pleace specify search criterias");
+        } else
+        {
+            window.location.href = "/Place/Show?Name=" + name + "&City=" + city;
+        }
+
+
+    });
 
     // Weekdays Toggles
     $("#w7").change(function (event) {
@@ -187,6 +200,22 @@
 
     });
   
- 
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "400",
+        "hideDuration": "400",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
 });
 

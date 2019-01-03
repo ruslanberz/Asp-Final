@@ -179,7 +179,57 @@ namespace ASP_Final.Controllers
 
 
         }
+
+
        
 
+        public ActionResult Show (string Name,string City)
+
+               
+        {
+
+            VwPlaceShow result = new VwPlaceShow();
+            if (Name != null || City != null)
+            {
+                if (Name != "" && City == "")
+                {
+                    var places = db.Places.Include("City").Include("Category").Include("Photo").Where(x => x.Category.Name == Name);
+                    var list = new List<Place>(places);
+                    result.Places = list;
+
+                }
+                else if (City != "" && Name == "")
+                {
+                    var places = db.Places.Include("City").Include("Category").Include("Photos").Where(x => x.City.Name == City);
+                    var list = new List<Place>(places);
+                    result.Places = list;
+
+                }
+                else
+                {
+                    var places = db.Places.Include("City").Include("Category").Where(x => x.City.Name == City&&x.Category.Name==Name);
+                    var list = new List<Place>(places);
+                    result.Places = list;
+                }
+            }
+
+            if (result.Places.Count() > 0 && result.Places.Count()!= null)
+            {
+                List<CategoryService> cs = new List<CategoryService>();
+
+                cs = db.CategoryServices.Include("Service").Where(x => x.Category.Name == Name).ToList();
+                result.Count= result.Places.Count();
+                result.CategoryServices = cs;
+                return View(result);
+
+            }
+            else
+            {
+                return new HttpNotFoundResult("Pleace specify correct search options");
+            }
+        }
+
     }
+
+
 }

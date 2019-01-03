@@ -250,6 +250,7 @@
     <Compile Include="Models\VwAddPlace.cs" />
     <Compile Include="Models\VwHomeIndex.cs" />
     <Compile Include="Models\VwJson.cs" />
+    <Compile Include="Models\VwPlaceShow.cs" />
     <Compile Include="Models\WorkHour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -321,6 +322,7 @@
     <Content Include="Public\js\owl.carousel.js" />
     <Content Include="Public\js\popper.min.js" />
     <Content Include="Public\js\script.js" />
+    <Content Include="Public\js\Show.js" />
     <Content Include="Public\js\swiper.min.js" />
     <Content Include="Public\js\validate.js" />
     <Content Include="Public\video\home.mp4" />
@@ -383,6 +385,7 @@
     <Content Include="Public\js\swiper.min.js.map" />
     <Content Include="Public\scss\style.scss" />
     <Content Include="Views\Place\Add.cshtml" />
+    <Content Include="Views\Place\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1,0 +1,113 @@
+﻿@model ASP_Final.Models.VwPlaceShow
+
+
+<section class="featured-wrap">
+    <div class="container-fluid container-subpage">
+        <div class="row">
+            <div class="col-md-7 responsive-wrap">
+                <div class="row detail-filter-wrap">
+                    <div class="col-md-4 featured-responsive">
+                        <div class="detail-filter-text">
+                            <p>@Model.Count Results For <span>@Model.Places.FirstOrDefault().Category.Name</span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-8 featured-responsive">
+                        <div class="detail-filter">
+                            <p>Filter by</p>
+                            <form class="filter-dropdown">
+                                <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+                                    <option selected>Best Match</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </form>
+                            <form class="filter-dropdown">
+                                <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect1">
+                                    <option selected>Restaurants</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="map-responsive-wrap">
+                    <a class="map-icon btn btn-block" href="#"><i class="icon-location-pin"></i> <small>OPEN LISTING IN MAP</small></a>
+                </div>
+                <div class="row detail-checkbox-wrap">
+                    @foreach (var item in Model.CategoryServices)
+                    {
+                        <div class="col-12 col-md-6 col-lg-4">
+
+                            <div class="detail-checkbox">
+                                <div class="md-checkbox">
+                                    <input id="@item.Id" type="checkbox">
+                                    <label for="@item.Id">@item.Service.Name</label>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="row">
+
+                    @foreach (var item in Model.Places)
+                    {
+                        <div class="col-md-6 card-2">
+                            <!-- card-1 -->
+                            <div class="card">
+                                <a href="detail.html">
+                                    <div class="imgitem" >
+                                        <img class="card-img-top" style="  position: relative;
+    float: left;
+    width:  420px;
+    height: 270px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;" src="~/Public/images/upload/@item.Photos.FirstOrDefault().PhotoName" alt="Card image cap">
+                                    </div>
+
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.Name</h5>
+                                    <ul class="card-rating  d-flex justify-content-between align-items-center">
+                                        <li>5.0</li>
+                                        <li class="flex-grow-1">45 ratings</li>
+                                        <li class="category"><i class="@item.Category.Icon"></i>@item.Category.Name</li>
+                                    </ul>
+                                    <p class="card-text">@item.Slogan</p>
+                                </div>
+                                <div class="card-bottom">
+                                    <p><i class="ti-location-pin"></i>@item.City.Name</p>
+                                    <span>Closed Now</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-md-5 responsive-wrap map-wrap">
+                <div class="map-fix">
+                    <!-- Google map will appear here! Edit the Latitude, Longitude and Zoom Level below using data-attr-*  -->
+                    <a href="javascript:void(0);" class="map-close"><span class="ti-close"></span></a>
+                    <div id="map" data-lat="37.3752271" data-lon="-122.1198111" data-zoom="12"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+
+
+    <script src="~/Public/js/Show.js"></script>
+
+
+}
