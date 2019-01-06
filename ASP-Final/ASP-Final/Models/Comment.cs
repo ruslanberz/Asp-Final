@@ -19,7 +19,7 @@ namespace ASP_Final.Models
         public DateTime Date { get; set; }
         public User User { get; set; }
         public Place Place { get; set; }
-        public List<Reaction> Reactions { get; set; }
-        public List<CommentPhoto> CommentPhotos { get; set; }
+        public virtual List<Reaction> Reactions { get; set; }
+        public virtual List<CommentPhoto> CommentPhotos { get; set; }
     }
 }

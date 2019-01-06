@@ -9,29 +9,36 @@
         starSize: 25,
         useGradient:true,
         callback: function (currentRating, $el) {
-            $("#rating").attr('data-rating', currentRating);  
+            $("#rateval").val(currentRating);
+            console.log($("#rateval").val());
         }
     });
     $("#rate").submit(function (e) {
         e.preventDefault();
-        var rating = Number ($("#rating").data("rating"))*2;
-        var text = $('textarea#commentText').val();
-        var id = Number($("#rate").data("id"))
+        var formdata = new FormData(); //FormData object
+        var files = $("#filess").get(0).files;
+        //Iterating through each files selected in fileInput
+        for (var i = 0; i < files.length; i++) {
+            //Appending each file to FormData object
+            console.log(files[i].name);
+            formdata.append(files[i].name, files[i]);
+        }
+        console.log($(this).serialize());
         $.ajax({
             type: 'post',
             dataType: "json",
-            url: "/place/publishcomment",
-            data:
-            {
-                Comment: text,
-                Rating: rating,
-                PlaceId:id
-
-            },
+            url: "/Place/PublishComment",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: new FormData(this) ,
 
             success: (function (data) {
-                alert("ok");
+                console.log(data);
+                window.location.href = data.url;
             })
+
+            
 
 
         });
@@ -80,5 +87,137 @@
     function showPosition(position) {
         map.setCenter({ lat: $(".mapitem:first").data("lat"), lng: $(".mapitem:first").data("lng") });
     }
+    $(document).on("click", "#helpful", function () {
+    
+        var CommentId = Number($(this).data("id"));
+        console.log(CommentId);
+        
+        var IsAdd;
+      
+        if (!$(this).hasClass("hgreen")) {
+            $(this).siblings().each(function () {
+                if ($(this).hasClass("unhelpful")) {
+                    $(this).removeClass("uhred");
+                }
+            });
+        
+            IsAdd = true;
+            $(this).addClass("hgreen");
+            $.ajax({
+                url: "/Place/Hcomment",
+                type: 'post',
+                dataType: 'json',
+                data:  { CommentId, IsAdd },
 
+                success: function (data) {
+                    console.log(data.message);
+                }
+
+
+
+            })
+        }
+
+        else {
+            $(this).removeClass("hgreen");
+            $(this).siblings().each(function () {
+                if ($(this).hasClass("unhelpful")) {
+                    $(this).removeClass("uhred");
+                }
+            });
+            $(".unhelpful").each(function (index, item) {
+                if ($(".unhelpful").data("id") == $(this).data("id")) {
+                    console.log(index);
+                    $('.unhelpful:eq(' + index + ')').removeClass("uhred");
+                }
+            });
+            console.log("here");
+            IsAdd = false;
+            $.ajax({
+                url: "/place/hcomment",
+                type: 'post',
+                dataType: 'json',
+                data: { CommentId, IsAdd },
+
+                success: function (data) {
+                    console.log(data.message);
+                    console.log("#sildimblet");
+                }
+
+
+
+            })
+
+
+        }
+    });
+    $(document).on("click", "#unhelpful", function () {
+
+        var CommentId = Number($(this).data("id"));
+        console.log(CommentId);
+
+        var IsAdd;
+
+        if (!$(this).hasClass("uhred")) {
+            $(this).siblings().each(function () {
+                if ($(this).hasClass("helpful")) {
+                    $(this).removeClass("hgreen");
+                }
+            });
+            $(".helpful").each(function (index, item) {
+                if ($(".helpful").data("id") == $(this).data("id")) {
+                    console.log(index);
+                    $(this).removeClass("hgreen");
+                }
+            });
+            IsAdd = true;
+            $(this).addClass("uhred");
+            $.ajax({
+                url: "/Place/Uhcomment",
+                type: 'post',
+                dataType: 'json',
+                data: { CommentId, IsAdd },
+
+                success: function (data) {
+                    console.log(data.message);
+                }
+
+
+
+            })
+        }
+
+        else {
+            $(this).siblings().each(function () {
+                if ($(this).hasClass("helpful")) {
+                    $(this).removeClass("hgreen");
+                }
+            });
+            $(this).removeClass("uhred");
+            $(".helpful").each(function (index, item) {
+                if ($(".helpful").data("id") == $(this).data("id")) {
+                    console.log(index);
+                    $(this).removeClass("hgreen");
+                }
+            });
+            console.log("here");
+            IsAdd = false;
+            $.ajax({
+                url: "/place/Uhcomment",
+                type: 'post',
+                dataType: 'json',
+                data: { CommentId, IsAdd },
+
+                success: function (data) {
+                    console.log(data.message);
+                    console.log("#sildimblet");
+                }
+
+
+
+            })
+
+
+        }
+    });
 });

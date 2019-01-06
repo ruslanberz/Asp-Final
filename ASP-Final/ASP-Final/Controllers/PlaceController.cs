@@ -280,26 +280,45 @@ namespace ASP_Final.Controllers
 
         [HttpPost]
         [Auth]
-        public JsonResult PublishComment(string Comment, int Rating, int PlaceId)
-        {
-            if (Comment!=null&&Rating!=0&&Comment!="")
+        public JsonResult PublishComment(string Comment, int ratingvalue, int PlaceId, HttpPostedFileBase[] filess )
+        
+{
+            if (Comment!=null&& ratingvalue!= 0&&Comment!=""&&Comment.Length>140)
             {
 
                 Comment toWrite = new Comment();
-                toWrite.Rating = (byte)Rating;
+                toWrite.Rating = (byte)ratingvalue;
                 toWrite.Text = Comment;
                 toWrite.PlaceId = PlaceId;
                 toWrite.UserId = Convert.ToInt32(Session["User"]);
                 toWrite.Date = DateTime.Now;
                 db.Comments.Add(toWrite);
                 db.SaveChanges();
+                foreach (HttpPostedFileBase foto in filess)
+                {
+                    if (foto.ContentLength > 0)
+                    {
+                        string filename = DateTime.Now.ToString("yyyyMMddHHmmssfff") + foto.FileName;
+                        string path = Path.Combine(Server.MapPath("~/Public/images/upload"), filename);
+                        foto.SaveAs(path);
+                        CommentPhoto ph= new CommentPhoto()
+                        {
+                           CommentId=toWrite.Id,
+                           Photo=filename,
+                        };
+                        db.CommentPhotos.Add(ph);
+                        db.SaveChanges();
+                    }
+
+                }
 
                 return Json(new
                 {
-                   
-                    status=200,
-                    comment=Comment,
-                   message="ok"
+
+                    status = 200,
+                    comment = Comment,
+                    message = "ok",
+                    url = "/place/details/" + PlaceId
 
                 }, JsonRequestBehavior.AllowGet);
             }
@@ -308,6 +327,121 @@ namespace ASP_Final.Controllers
             {
                 status = 404,
                 message = "fuck"
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [Auth]
+        public JsonResult Hcomment(int CommentId, bool IsAdd)
+        {
+            
+            if (CommentId != 0)
+            {
+                 Reaction reaction= db.Reactions.Where(x => x.CommentId == CommentId).FirstOrDefault();
+                if (reaction==null)
+                {
+                    Reaction brandnew = new Reaction();
+                    brandnew.CommentId = CommentId;
+                    brandnew.UserId = (int)Session["User"];
+                    if (IsAdd)
+                    {
+                        brandnew.Type = 1;
+                    }
+                    else
+                    {
+                        brandnew.Type = 0;
+                    }
+
+                    db.Reactions.Add(brandnew);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    if (IsAdd)
+                    {
+                        reaction.Type = 1;
+                    }
+                    else
+                    {
+                        reaction.Type = 0;
+                    }
+
+
+                    db.SaveChanges();
+
+                    
+                }
+                return Json(new
+
+                 
+                {
+                    message="ok",
+                    status=200,
+                }, JsonRequestBehavior.AllowGet);
+
+            }
+
+            return Json(new
+            {
+                message="Xiyarxiyar sehvler cixir",
+                status=404
+            }, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        [Auth]
+        public JsonResult Uhcomment(int CommentId, bool IsAdd)
+        {
+
+            if (CommentId != 0)
+            {
+                Reaction reaction = db.Reactions.Where(x => x.CommentId == CommentId).FirstOrDefault();
+                if (reaction == null)
+                {
+                    Reaction brandnew = new Reaction();
+                    brandnew.CommentId = CommentId;
+                    brandnew.UserId = (int)Session["User"];
+                    if (IsAdd)
+                    {
+                        brandnew.Type = 2;
+                    }
+                    else
+                    {
+                        brandnew.Type = 0;
+                    }
+
+                    db.Reactions.Add(brandnew);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    if (IsAdd)
+                    {
+                        reaction.Type = 2;
+                    }
+                    else
+                    {
+                        reaction.Type = 0;
+                    }
+
+
+                    db.SaveChanges();
+
+
+                }
+                return Json(new
+
+
+                {
+                    message = "ok",
+                    status = 200,
+                }, JsonRequestBehavior.AllowGet);
+
+            }
+
+            return Json(new
+            {
+                message = "Xiyarxiyar sehvler cixir",
+                status = 404
             }, JsonRequestBehavior.AllowGet);
         }
     }

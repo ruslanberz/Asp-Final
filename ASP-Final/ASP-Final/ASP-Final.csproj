@@ -233,6 +233,10 @@
     <Compile Include="Migrations\201901052355551_categorieschange.Designer.cs">
       <DependentUpon>201901052355551_categorieschange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901061222169_comment.cs" />
+    <Compile Include="Migrations\201901061222169_comment.Designer.cs">
+      <DependentUpon>201901061222169_comment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -256,6 +260,7 @@
     <Compile Include="Models\VwJson.cs" />
     <Compile Include="Models\VwPlaceDetails.cs" />
     <Compile Include="Models\VwPlaceShow.cs" />
+    <Compile Include="Models\VwReaction.cs" />
     <Compile Include="Models\WorkHour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -420,6 +425,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901052355551_categorieschange.resx">
       <DependentUpon>201901052355551_categorieschange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901061222169_comment.resx">
+      <DependentUpon>201901061222169_comment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
