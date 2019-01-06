@@ -13,6 +13,6 @@ namespace ASP_Final.Models
         public int ServiceId { get; set; }
 
         public Place Place { get; set; }
-        public Service Service { get; set; }
+        public virtual Service Service { get; set; }
     }
 }

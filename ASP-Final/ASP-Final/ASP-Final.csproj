@@ -229,6 +229,10 @@
     <Compile Include="Migrations\201812291154463_dbChangesAddUSerId.Designer.cs">
       <DependentUpon>201812291154463_dbChangesAddUSerId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901052355551_categorieschange.cs" />
+    <Compile Include="Migrations\201901052355551_categorieschange.Designer.cs">
+      <DependentUpon>201901052355551_categorieschange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -250,6 +254,7 @@
     <Compile Include="Models\VwAddPlace.cs" />
     <Compile Include="Models\VwHomeIndex.cs" />
     <Compile Include="Models\VwJson.cs" />
+    <Compile Include="Models\VwPlaceDetails.cs" />
     <Compile Include="Models\VwPlaceShow.cs" />
     <Compile Include="Models\WorkHour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -272,6 +277,7 @@
     <Content Include="Public\css\owl.theme.default.min.css" />
     <Content Include="Public\css\set1.css" />
     <Content Include="Public\css\simple-line-icons.css" />
+    <Content Include="Public\css\star-rating-svg.css" />
     <Content Include="Public\css\style.css" />
     <Content Include="Public\css\swiper.min.css" />
     <Content Include="Public\css\themify-icons.css" />
@@ -300,6 +306,8 @@
     <Content Include="Public\images\nav-icon.png" />
     <Content Include="Public\images\paypal.png" />
     <Content Include="Public\images\search-listing-icon.svg" />
+    <Content Include="Public\js\jquery.star-rating-svg.js" />
+    <Content Include="Public\js\details.js" />
     <Content Include="Public\js\jquery-ui.min.js" />
     <Content Include="Public\js\jquery.autocomplete.min.js" />
     <Content Include="Public\js\addplace.js" />
@@ -386,6 +394,7 @@
     <Content Include="Public\scss\style.scss" />
     <Content Include="Views\Place\Add.cshtml" />
     <Content Include="Views\Place\Show.cshtml" />
+    <Content Include="Views\Place\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -408,6 +417,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812291154463_dbChangesAddUSerId.resx">
       <DependentUpon>201812291154463_dbChangesAddUSerId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901052355551_categorieschange.resx">
+      <DependentUpon>201901052355551_categorieschange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

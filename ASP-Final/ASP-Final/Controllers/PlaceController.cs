@@ -189,35 +189,73 @@ namespace ASP_Final.Controllers
         {
 
             VwPlaceShow result = new VwPlaceShow();
+            result.IsOpenedNow = new List<int>();
+            result.IsAllSame = true;
+            result.Services = db.Services.ToList();
+            List<CategoryService> cs = new List<CategoryService>();
+            //Bu massive Name gelmeyende Category id-leri yigilir. Show html-de butun muvafiq servisleri getirmek uchun
+          List<int> ArrayOfPlaceCategories= new List<int>();
             if (Name != null || City != null)
             {
                 if (Name != "" && City == "")
                 {
-                    var places = db.Places.Include("City").Include("Category").Include("Photo").Where(x => x.Category.Name == Name);
+                    var places = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").Where(x => x.Category.Name == Name);
                     var list = new List<Place>(places);
                     result.Places = list;
 
                 }
                 else if (City != "" && Name == "")
                 {
-                    var places = db.Places.Include("City").Include("Category").Include("Photos").Where(x => x.City.Name == City);
+                    var places = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").Where(x => x.City.Name == City);
                     var list = new List<Place>(places);
                     result.Places = list;
-
+                    
+                    foreach (var item in result.Places)
+                    {
+                        ArrayOfPlaceCategories.Add(item.CategoryId);
+                    }
+                    cs= db.CategoryServices.Include("Service").Where(x => ArrayOfPlaceCategories.Contains(x.CategoryId)).ToList();
+                    result.IsAllSame = false;
                 }
                 else
                 {
-                    var places = db.Places.Include("City").Include("Category").Where(x => x.City.Name == City&&x.Category.Name==Name);
+                    var places = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").Where(x => x.City.Name == City&&x.Category.Name==Name);
                     var list = new List<Place>(places);
                     result.Places = list;
                 }
             }
 
-            if (result.Places.Count() > 0 && result.Places.Count()!= null)
+            if (result.Places!=null)
             {
-                List<CategoryService> cs = new List<CategoryService>();
+               
+                if (Name!="")
+                {
+                    cs = db.CategoryServices.Include("Service").Where(x => x.Category.Name == Name).ToList();
+                }
+                int counter = 0;
 
-                cs = db.CategoryServices.Include("Service").Where(x => x.Category.Name == Name).ToList();
+                foreach (var item in result.Places)
+                {
+                    int CurrentWeekDay = (int)DateTime.Now.DayOfWeek;
+                    if (CurrentWeekDay==0)
+                    {
+                        CurrentWeekDay = 7;
+                    }
+                    TimeSpan CurrentTime = DateTime.Now.TimeOfDay;
+                    WorkHour TodayWorkTime = item.WorkHours.FirstOrDefault(x => x.WeekNo == CurrentWeekDay);
+                    if (CurrentTime > TodayWorkTime.OpenHour && CurrentTime < TodayWorkTime.CloseHour)
+                    {
+                        result.IsOpenedNow.Add(1);
+                        counter++;
+                    }
+                    else
+                    {
+                        result.IsOpenedNow.Add(0);
+                        counter++;
+                    }
+
+                }
+
                 result.Count= result.Places.Count();
                 result.CategoryServices = cs;
                 return View(result);
@@ -229,7 +267,50 @@ namespace ASP_Final.Controllers
             }
         }
 
+        public ActionResult Details(int id)
+        {
+            VwPlaceDetails details = new VwPlaceDetails();
+            details.Place = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").FirstOrDefault(x=>x.Id==id);
+            details.Comments = db.Comments.Include("User").Include("Reactions").Where(c=>c.PlaceId==id).ToList();
+            details.Reactions = db.Reactions.Include("Comment").Where(r => r.Comment.PlaceId == id).ToList();
+
+
+            return View(details);
+        }
+
+        [HttpPost]
+        [Auth]
+        public JsonResult PublishComment(string Comment, int Rating, int PlaceId)
+        {
+            if (Comment!=null&&Rating!=0&&Comment!="")
+            {
+
+                Comment toWrite = new Comment();
+                toWrite.Rating = (byte)Rating;
+                toWrite.Text = Comment;
+                toWrite.PlaceId = PlaceId;
+                toWrite.UserId = Convert.ToInt32(Session["User"]);
+                toWrite.Date = DateTime.Now;
+                db.Comments.Add(toWrite);
+                db.SaveChanges();
+
+                return Json(new
+                {
+                   
+                    status=200,
+                    comment=Comment,
+                   message="ok"
+
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(new
+            {
+                status = 404,
+                message = "fuck"
+            }, JsonRequestBehavior.AllowGet);
+        }
     }
 
-
+    
 }

@@ -8,62 +8,78 @@
                 <div class="row detail-filter-wrap">
                     <div class="col-md-4 featured-responsive">
                         <div class="detail-filter-text">
-                            <p>@Model.Count Results For <span>@Model.Places.FirstOrDefault().Category.Name</span></p>
-                        </div>
+                            <p>
+                                @Model.Count Results For <span>
+                                @if (Model.IsAllSame == false)
+                                {
+                                    @Model.Places.FirstOrDefault().City.Name
+                                }
+                                else
+                                {
+                                    if (@Model.Places.FirstOrDefault() != null)
+                                    {
+                                        @Model.Places.FirstOrDefault().Category.Name
+                                    }
+                                }
+                            </span>
+                        </p>
                     </div>
-                    <div class="col-md-8 featured-responsive">
-                        <div class="detail-filter">
-                            <p>Filter by</p>
-                            <form class="filter-dropdown">
-                                <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-                                    <option selected>Best Match</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </form>
-                            <form class="filter-dropdown">
-                                <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect1">
-                                    <option selected>Restaurants</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </form>
-
-                        </div>
+                </div>
+                <div class="col-md-8 featured-responsive">
+                    <div class="detail-filter">
+                        <p>Change Search options</p>
+                        <form class="filter-dropdown">
+                            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+                                <option selected>Best Match</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </form>
+                        <form class="filter-dropdown">
+                            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect1">
+                                <option selected>Restaurants</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </form>
 
                     </div>
 
                 </div>
-                <div class="map-responsive-wrap">
-                    <a class="map-icon btn btn-block" href="#"><i class="icon-location-pin"></i> <small>OPEN LISTING IN MAP</small></a>
-                </div>
-                <div class="row detail-checkbox-wrap">
-                    @foreach (var item in Model.CategoryServices)
+
+            </div>
+            <div class="map-responsive-wrap">
+                <a class="map-icon btn btn-block" href="#"><i class="icon-location-pin"></i> <small>OPEN LISTING IN MAP</small></a>
+            </div>
+            @*<div class="row detail-checkbox-wrap">
+                    @foreach (var item in Model.Services)
                     {
                         <div class="col-12 col-md-6 col-lg-4">
 
                             <div class="detail-checkbox">
                                 <div class="md-checkbox">
-                                    <input id="@item.Id" type="checkbox">
-                                    <label for="@item.Id">@item.Service.Name</label>
+                                    <input id="@item.Id" type="checkbox" >
+                                    <label for="@item.Id">@item.Name</label>
                                 </div>
 
 
                             </div>
                         </div>
                     }
-                </div>
-                <div class="row">
-
-                    @foreach (var item in Model.Places)
+                </div>*@
+            <div class="row">
+                @if (Model.Places != null)
+                {
+                    int i = 0;
+                    foreach (var item in Model.Places.ToList())
                     {
                         <div class="col-md-6 card-2">
                             <!-- card-1 -->
-                            <div class="card">
-                                <a href="detail.html">
-                                    <div class="imgitem" >
+                            <div class="card" data-name="@item.Name" data-id="@item.Id">
+                                <a href="@Url.Action("details","place",new {id=@item.Id })">
+                                    <div class="imgitem">
                                         <img class="card-img-top" style="  position: relative;
     float: left;
     width:  420px;
@@ -85,23 +101,47 @@
                                 </div>
                                 <div class="card-bottom">
                                     <p><i class="ti-location-pin"></i>@item.City.Name</p>
-                                    <span>Closed Now</span>
+
+                                    @if (Model.IsOpenedNow[i] == 1)
+                                    {
+                                        <span class="open-close_green">Opened Now</span>
+                                    }
+                                    else
+                                    {
+                                        <span>Closed FNow</span>
+                                    }
+
+
+
                                 </div>
                             </div>
                         </div>
+                        i++;
                     }
-                </div>
-            </div>
 
-            <div class="col-md-5 responsive-wrap map-wrap">
-                <div class="map-fix">
-                    <!-- Google map will appear here! Edit the Latitude, Longitude and Zoom Level below using data-attr-*  -->
-                    <a href="javascript:void(0);" class="map-close"><span class="ti-close"></span></a>
-                    <div id="map" data-lat="37.3752271" data-lon="-122.1198111" data-zoom="12"></div>
-                </div>
+                }
+
+
+            </div>
+        </div>
+
+        <div class="col-md-5 responsive-wrap map-wrap">
+            <div class="map-fix">
+                <!-- Google map will appear here! Edit the Latitude, Longitude and Zoom Level below using data-attr-*  -->
+                <a href="javascript:void(0);" class="map-close"><span class="ti-close"></span></a>
+                <div id="map"></div>
+                @if (Model.Places != null)
+                {
+
+                    foreach (var item in Model.Places.ToList())
+                    {
+                        <div class="d-none mapitem" data-lat="@item.Lat" data-lng="@item.Lng" data-name="@item.Name"></div>
+                    }
+                }
             </div>
         </div>
     </div>
+</div>
 </section>
 
 @section scripts{

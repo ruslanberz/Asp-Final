@@ -29,7 +29,8 @@ namespace ASP_Final.Models
         public List<Comment> Comments { get; set; }
         public List<WorkHour> WorkHours { get; set; }
         public List<Photo> Photos { get; set; }
-        public List<PlaceService> PlaceServices { get; set; }
         public string Keyword { get; set; }
-    }
+        public virtual List<PlaceService> PlaceServices { get; set; }
+
+}
 }

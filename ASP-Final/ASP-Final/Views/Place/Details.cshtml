@@ -1,0 +1,263 @@
+﻿<!--============================= BOOKING =============================-->
+@model ASP_Final.Models.VwPlaceDetails
+<div>
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            @foreach (var item in Model.Place.Photos)
+            {
+                if (item != null)
+                {
+                    <div class="swiper-slide">
+                        <a href="~/Public/images/upload/@item.PhotoName" class="grid image-link">
+                            <img src="~/Public/images/upload/@item.PhotoName" style="width:33vw; height:auto" class="img-fluid" alt="#">
+                        </a>
+                    </div>
+                }
+            }
+
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination swiper-pagination-white"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next swiper-button-white"></div>
+        <div class="swiper-button-prev swiper-button-white"></div>
+    </div>
+</div>
+<!--//END BOOKING -->
+<!--//END BOOKING -->
+<!--============================= RESERVE A SEAT =============================-->
+
+<section class="reserve-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <br />
+                <h5>@Model.Place.Name</h5>
+                <p><span>$$$</span>$$</p>
+                <p class="reserve-description">@Model.Place.Slogan</p>
+            </div>
+            <div class="col-md-6">
+                <div class="reserve-seat-block align-items-center">
+                    <div class="reserve-rating mx-0 mx-md-3">
+                        <span>9.5</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--//END RESERVE A SEAT -->
+<!--============================= BOOKING DETAILS =============================-->
+
+<section class="gray-dark booking-details_wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 responsive-wrap">
+                <div class="booking-checkbox_wrap">
+                    <div class="booking-checkbox">
+                        <p>@Model.Place.Description</p>
+                        <hr>
+                    </div>
+                    <div class="row">
+                        @foreach (var item in Model.Place.PlaceServices)
+                        {
+                            <div class="col-md-4">
+                                <label class="custom-checkbox">
+                                    <span class="ti-check-box"></span>
+                                    <span class="custom-control-description">@item.Service.Name</span>
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="booking-checkbox_wrap booking-your-review">
+                    <h5>Write a Review</h5>
+                    <hr>
+                    <div class="customer-review_wrap">
+                        <div class="customer-img">
+                            <img src="images/avatar.jpg" class="img-fluid" alt="#">
+                        </div>
+                        <div class="customer-content-wrap">
+                            <div class="your-rating-wrap">
+                                <span>Your rating</span>
+                                <div class="customer-review" >
+                                    <div class="my-rating" id="rating" ></div>
+                                </div>
+                            </div>
+                            <form action="/" method="post" id="rate" data-id="@Model.Place.Id">
+                                <div class="your-comment-wrap">
+                                    <textarea name="#" id="commentText" class="your-rating-content" placeholder="Enter Your Comments"></textarea>
+                                    <h6 class="your-rating-notify">at least 140 characters</h6>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4 mr-auto">
+                                        <div class="add-photos-link mb-3 mb-md-0">
+                                            <div class="add-gallery-text">
+                                                <i class="ti-gallery"></i>
+                                                <span>Add photo</span>
+                                            </div>
+                                            <input name="files" id="files" type="file" class="custom-file-input" multiple>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="your-rating-btn">
+                                            <br />
+                                            <button type="submit"  class="btn btn-danger btn-block">Publish Review</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="booking-checkbox_wrap my-4">
+                    <h4>143 Reviews</h4>
+                    <hr>
+                    <div class="customer-review_wrap">
+                        <div class="customer-img">
+                            <img src="https://via.placeholder.com/256x256.jpg" class="img-fluid" alt="#">
+                            <p>Ankita L</p>
+                            <span>43 Reviews</span>
+                        </div>
+                        <div class="customer-content-wrap">
+                            <div class="customer-content">
+                                <div class="customer-review">
+                                    <h5>Best noodles in the Newyork city</h5>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span class="round-icon-blank"></span>
+                                    <p>Reviewed 4 days ago</p>
+                                </div>
+                                <div class="customer-rating">8.0</div>
+                            </div>
+                            <p class="customer-text">
+                                I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly. I usually get the
+                                hand pulled noodles in a soup. House Special #1 is amazing and the lamb noodles are also great. If you want your noodles a little chewier, get the knife cut noodles, which are also amazing. Their dumplings are great
+                                dipped in their chili sauce.
+                            </p>
+                            <p class="customer-text">
+                                I love how you can see into the kitchen and watch them make the noodles and you can definitely tell that this is a family run establishment. The prices are are great with one dish maybe being $9. You just have to remember
+                                to bring cash.
+                            </p>
+                            <ul>
+                                <li><img src="https://via.placeholder.com/500x355.jpg" class="img-fluid" alt="#"></li>
+                                <li><img src="https://via.placeholder.com/500x355.jpg" class="img-fluid" alt="#"></li>
+                                <li><img src="https://via.placeholder.com/500x355.jpg" class="img-fluid" alt="#"></li>
+                            </ul>
+                            <span>56 people marked this review as helpful</span>
+                            <a href="#"><span class="icon-like"></span>Helpful</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="customer-review_wrap">
+                        <div class="customer-img">
+                            <img src="https://via.placeholder.com/256x256.jpg" class="img-fluid" alt="#">
+                            <p>Saniya G</p>
+                            <span>31 Reviews</span>
+                        </div>
+                        <div class="customer-content-wrap">
+                            <div class="customer-content">
+                                <div class="customer-review">
+                                    <h5>A hole-in-the-wall old school shop.</h5>
+                                    <span class="customer-rating-red"></span>
+                                    <span class="round-icon-blank"></span>
+                                    <span class="round-icon-blank"></span>
+                                    <span class="round-icon-blank"></span>
+                                    <span class="round-icon-blank"></span>
+                                    <p>Reviewed 2 months ago</p>
+                                </div>
+                                <div class="customer-rating customer-rating-red">2.0</div>
+                            </div>
+                            <p class="customer-text">The dumplings were so greasy...the pan-fried shrimp noodles were the same. So much oil and grease it was difficult to eat. The shrimp noodles only come with 3 shrimp (luckily the dish itself is cheap) </p>
+                            <p class="customer-text">
+                                The beef noodle soup was okay. I added black vinegar into the broth to give it some extra flavor. The soup has bok choy which I liked - it's a nice textural element. The shop itself is really unclean (which is the case
+                                in many restaurants in Chinatown) They don't wipe down the tables after customers have eaten. If you peak into the kitchen many of their supplies are on the ground which is unsettling...
+                            </p>
+                            <span>16 people marked this review as helpful</span>
+                            <a href="#"><span class="icon-like"></span>Helpful</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 responsive-wrap">
+                <div class="contact-info">
+                    <div id="map" style="height:300px"></div>
+                    <div class="mapitem d-none" data-lat="@Model.Place.Lat" data-lng="@Model.Place.Lng" data-name="@Model.Place.Name"></div>
+                    <div class="address">
+                        <span class="icon-location-pin"></span>
+                        <p>@Model.Place.Address</p>
+                    </div>
+                    <div class="address">
+                        <span class="icon-screen-smartphone"></span>
+                        <p>@Model.Place.Phone</p>
+                    </div>
+                    <div class="address">
+                        <span class="icon-link"></span>
+                        <p><a href="@Model.Place.Website">@Model.Place.Website</a></p>
+                    </div>
+                    <div class="address">
+                        <span class="icon-clock"></span>
+                        <p>Mon - Sun 09:30 am - 05:30 pm </p>
+                        <a href="#" class="featured-open">OPEN NOW</a>
+                    </div>
+                    <a href="#" class="btn btn-outline-danger btn-contact">SEND A MESSAGE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--//END BOOKING DETAILS -->
+@section scripts{
+
+
+    <script src="~/Public/js/swiper.min.js"></script>
+    <script src="~/Public/js/jquery.magnific-popup.js"></script>
+    <script src="~/Public/js/jquery.star-rating-svg.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container',
+            {
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+                loop: true,
+                loopFillGroupWithBlank: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+    </script>
+    <script>
+        if ($('.image-link').length) {
+            $('.image-link').magnificPopup({
+                type: 'image',
+                gallery: {
+                    enabled: true
+                }
+            });
+        }
+        if ($('.image-link2').length) {
+            $('.image-link2').magnificPopup({
+                type: 'image',
+                gallery: {
+                    enabled: true
+                }
+            });
+        }
+    </script>
+    <script src="~/Public/js/details.js"></script>
+
+
+}
+
