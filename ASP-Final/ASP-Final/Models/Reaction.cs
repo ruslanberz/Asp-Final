@@ -14,7 +14,7 @@ namespace ASP_Final.Models
         public int UserId { get; set; }
         public byte Type { get; set; }
 
-        public User User { get; set; }
-        public Comment Comment { get; set; }
+        public virtual User User { get; set; }
+        public virtual Comment Comment { get; set; }
     }
 }

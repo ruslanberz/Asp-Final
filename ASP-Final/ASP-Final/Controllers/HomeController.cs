@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Helpers;
 using ASP_Final.Models;
 using ASP_Final.DAL;
+using ASP_Final.Helper;
 
 namespace ASP_Final.Controllers
 {
@@ -188,5 +189,38 @@ namespace ASP_Final.Controllers
             return Json(Cities, JsonRequestBehavior.AllowGet);
         }
 
+        [Auth]
+        public ActionResult UserProfile()
+        {
+            int id = (int)Session["User"];
+            VwProfile MyModel = new VwProfile();
+            MyModel.Ratings = new List<double>();
+            MyModel.Places= db.Places.Where(p => p.UserId == id).ToList();
+            foreach (var item in MyModel.Places)
+            {
+                if (item.Comments.Count()>0)
+                {
+                    MyModel.Ratings.Add(item.Comments.Average(x => x.Rating));
+                }
+                else
+                {
+                    MyModel.Ratings.Add(0);
+                }
+             
+       
+            }
+            User CurrentUser = db.Users.Find(id);
+            if (MyModel!= null)
+            {
+                return View(MyModel);
+            }
+            else
+            {
+                return HttpNotFound();
+
+            }
+
+
+        }
     }
 }

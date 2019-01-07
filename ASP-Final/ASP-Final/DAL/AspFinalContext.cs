@@ -26,5 +26,6 @@ namespace ASP_Final.DAL
         public DbSet<Reaction> Reactions { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<WorkHour> WorkHours { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
     }
 }

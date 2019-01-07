@@ -70,7 +70,7 @@
                                         <a class="nav-link" href="about.html">About</a>
                                     </li>
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="contact.html">Blog</a>
+                                        <a class="nav-link" href="@Url.Action("index","blog")">Blog</a>
                                     </li>
                                     <li class="nav-item active">
                                         <a class="nav-link" href="contact.html">Help</a>
@@ -94,7 +94,7 @@
                                     else
                                     {
                                         <li>
-                                            <a id="Profile" class="btn btn-success top-btn ml-2" href="#">Profile</a>
+                                            <a id="Profile" class="btn btn-success top-btn ml-2" href="@Url.Action("UserProfile","home")">Profile</a>
                                         </li>
                                         <li>
                                             <a id="Logout" class="btn btn-outline-danger top-btn ml-2" href=@Url.Action("logout","home")>Logout</a>

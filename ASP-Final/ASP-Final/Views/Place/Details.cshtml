@@ -81,14 +81,15 @@
                             <img src="~/Public/images/avatar.jpg" class="img-fluid" alt="#">
                         </div>
                         <div class="customer-content-wrap">
-                            
+
                             <form method="post" id="rate" enctype="multipart/form-data">
                                 <div class="your-rating-wrap">
                                     <span>Your rating</span>
                                     <div class="customer-review">
                                         <div class="my-rating" id="rating">
-                                            <input type="hidden" id="rateval" name="ratingvalue" value="" />
+
                                         </div>
+                                        <input type="hidden" id="rateval" name="ratingvalue" value="" />
                                     </div>
                                 </div>
                                 <input type="hidden" name="PlaceId" id="PlaceId" value="@Model.Place.Id" />
@@ -128,13 +129,34 @@
                             <div class="customer-img">
                                 <img src="~/Public/images/avatar.jpg" class="img-fluid" alt="#">
                                 <p>@item.User.Fullname</p>
-                               
+
                             </div>
                             <div class="customer-content-wrap" data-id="@item.Id">
                                 <div class="customer-content">
                                     <div class="customer-review">
 
-                                        <p>Reviewed 4 days ago</p>
+                                        @{ TimeSpan s = DateTime.Now.Subtract(item.Date);}
+                                        @if (item.Date.Day == DateTime.Now.Day)
+                                        {
+                                            <p> @item.Date.ToString("HH:mm:ss")</p>
+
+                                        }
+                                        else if (s.TotalDays >= 1 && s.TotalDays < 2)
+                                        {
+                                            <p>1 day ago </p>
+                                        }
+                                        else if (s.TotalDays > 2 && s.TotalDays < 3)
+                                        {
+                                            <p> 2 days ago</p>
+                                        }
+                                        else if (s.TotalDays > 3 && s.TotalDays < 4)
+                                        {
+                                            <p> 3 days ago</p>
+                                        }
+                                        else
+                                        {
+                                            <p>  @item.Date.ToString("HH:mm:ss dd/MMM/yyyy")</p>
+                                        }
                                     </div>
                                     <div class="customer-rating">@(Convert.ToInt32(item.Rating) * 2)</div>
                                 </div>
@@ -149,7 +171,7 @@
                                     }
 
                                 </ul>
-                                <p>@item.Reactions.Where(x=>x.CommentId==item.Id&&x.Type==1).Count() people rewiew as helpful</p>
+                                <p>@item.Reactions.Where(x => x.CommentId == item.Id && x.Type == 1).Count() people rewiew as helpful</p>
                                 <p>@item.Reactions.Where(x => x.CommentId == item.Id && x.Type == 2).Count() people rewiew as bullshit</p>
                                 <button type="button" id="helpful" class="helpful @if (Session["User"]!=null)
 	{
@@ -217,7 +239,7 @@
 
     <script src="~/Public/js/swiper.min.js"></script>
     <script src="~/Public/js/jquery.magnific-popup.js"></script>
-    <script src="~/Public/js/jquery.star-rating-svg.js"></script>
+
     <script>
         var swiper = new Swiper('.swiper-container',
             {
@@ -252,6 +274,22 @@
                 }
             });
         }
+    </script>
+    <script src="~/Public/js/jquery.star-rating-svg.js"></script>
+    <script>
+        $(".my-rating").starRating({
+            initialRating: 4,
+            strokeColor: '#894A00',
+            hoverColor: '#46cd38',
+            ratedColor: '#ff4b00',
+            strokeWidth: 10,
+            starSize: 25,
+            useGradient: true,
+            callback: function (currentRating, $el) {
+                $("#rateval").val(currentRating);
+                
+            }
+        });
     </script>
     <script src="~/Public/js/details.js"></script>
 

@@ -247,3 +247,4 @@ C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migratio
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP-Final.csprojAssemblyReference.cache
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.categorieschange.resources
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.comment.resources
+C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.Blog.resources

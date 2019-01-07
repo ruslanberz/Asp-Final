@@ -197,6 +197,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlaceController.cs" />
@@ -237,8 +238,13 @@
     <Compile Include="Migrations\201901061222169_comment.Designer.cs">
       <DependentUpon>201901061222169_comment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901071226539_Blog.cs" />
+    <Compile Include="Migrations\201901071226539_Blog.Designer.cs">
+      <DependentUpon>201901071226539_Blog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryService.cs" />
     <Compile Include="Models\City.cs" />
@@ -260,6 +266,7 @@
     <Compile Include="Models\VwJson.cs" />
     <Compile Include="Models\VwPlaceDetails.cs" />
     <Compile Include="Models\VwPlaceShow.cs" />
+    <Compile Include="Models\VwProfile.cs" />
     <Compile Include="Models\VwReaction.cs" />
     <Compile Include="Models\WorkHour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -400,6 +407,8 @@
     <Content Include="Views\Place\Add.cshtml" />
     <Content Include="Views\Place\Show.cshtml" />
     <Content Include="Views\Place\Details.cshtml" />
+    <Content Include="Views\Home\UserProfile.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -428,6 +437,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901061222169_comment.resx">
       <DependentUpon>201901061222169_comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901071226539_Blog.resx">
+      <DependentUpon>201901071226539_Blog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

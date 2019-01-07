@@ -1,18 +1,6 @@
 ﻿$(document).ready(function () {
 
-    $(".my-rating").starRating({
-        initialRating: 4,
-        strokeColor: '#894A00',
-        hoverColor:'#46cd38',
-        ratedColor: '#ff4b00',
-        strokeWidth: 10,
-        starSize: 25,
-        useGradient:true,
-        callback: function (currentRating, $el) {
-            $("#rateval").val(currentRating);
-            console.log($("#rateval").val());
-        }
-    });
+  
     $("#rate").submit(function (e) {
         e.preventDefault();
         var formdata = new FormData(); //FormData object
