@@ -1,0 +1,50 @@
+﻿<!--============================= SUBPAGE HEADER BG =============================-->
+@model ASP_Final.Models.Blog
+<section class="subpage-bg">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="title-block title-block_subpage">
+                    <h2>How to choose top restaurants</h2>
+                    <p> <a href="@Url.Action("index","home")"> Home</a> / Blog Detail</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--// SUBPAGE HEADER BG -->
+<!--============================= BLOG DETAIL =============================-->
+
+<section class="main-block">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-8 responsive-wrap">
+                <div class="full-blog ">
+                    <figure class="img-holder">
+                        <a href="#"><img style="height:400px; width:auto; display:block;margin:auto auto   " src="~/Public/images/upload/@Model.BigImage" class="img-fluid" alt="#"></a>
+                        <div class="blog-post-date">@Model.Date.ToShortDateString()</div>
+                    </figure>
+
+                    <div class="blog-content">
+                        @*<p class="text-muted">By: <a href="#"> Ruchika Megh</a> / 4 Comments</p>*@
+                        <div class="blog-text">
+                            <p class="lead">
+                              @Model.Text
+                            </p>
+                        </div>
+                    </div>
+                    <ul class="social-icons blog-share">
+                        <li><a href="https://twitter.com"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a href="https://facebook.com"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href="https://instagram.com"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                    </ul>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--//END BLOG DETAIL -->

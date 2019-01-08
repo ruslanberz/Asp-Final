@@ -1,5 +1,5 @@
 ﻿<!--============================= SUBPAGE HEADER BG =============================-->
-
+@model List<ASP_Final.Models.Blog>
 <section class="subpage-bg">
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -19,107 +19,24 @@
 <section class="main-block">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6 col-lg-3 article-first">
-                <div class="news-block">
-                    <img src="https://via.placeholder.com/960x1028.jpg" alt="#" class="img-fluid">
-                    <div class="news-title">
-                        <p>Nov 19, 2018 • Restaurants</p>
-                        <h5>How to choose top-notch restaurants</h5>
-                        <p class="blog2-thumbnail-name">By Ankita Luthar</p>
-
-                        <a href="blog-detail.html" class="blog2-link">Read More ➝</a>
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-3 article-first">
+                    <div class="news-block"  style="height:500px" >
+                        <img src="~/Public/images/upload/@item.SmallImage" alt="#" class="img-fluid">
+                        <div class="news-title">
+                            
+                            <span>@item.Date.ToShortDateString()</span>
+                            <span>@item.Categ</span>
+                            <h5>@item.Title</h5>
+                            <a href="@Url.Action("details","blog", new {Id =item.Id })" class="blog2-link">Read More ➝</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-3 article-first">
-                <div class="news-block">
-                    <img src="https://via.placeholder.com/960x1028.jpg" alt="#" class="img-fluid">
-                    <div class="news-title">
-                        <p>Nov 19, 2018 • Travelling</p>
-                        <h5>Traveling alone? Remember this 5 useful tips</h5>
-                        <p class="blog2-thumbnail-name">By Ankita Luthar</p>
-
-                        <a href="blog-detail.html" class="blog2-link">Read More ➝</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 article-first">
-                <div class="news-block">
-                    <img src="https://via.placeholder.com/960x1028.jpg" alt="#" class="img-fluid">
-                    <div class="news-title">
-                        <p>Nov 19, 2018 • Culture</p>
-                        <h5>What culture says about your country?</h5>
-                        <p class="blog2-thumbnail-name">By Ankita Luthar</p>
-
-                        <a href="blog-detail.html" class="blog2-link">Read More ➝</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 article-first">
-                <div class="news-block">
-                    <img src="https://via.placeholder.com/960x1028.jpg" alt="#" class="img-fluid">
-                    <div class="news-title">
-                        <p>Nov 19, 2018 • Events</p>
-                        <h5>World’s biggest hard-rock band visting Boston</h5>
-                        <p class="blog2-thumbnail-name">By Ankita Luthar</p>
-
-                        <a href="blog-detail.html" class="blog2-link">Read More ➝</a>
-                    </div>
-                </div>
-            </div>
+            }
+           
         </div>
-        <div class="row blog2-block">
-            <div class="col-md-6 col-lg-3 article-first">
-                <div class="news-block">
-                    <img src="https://via.placeholder.com/960x1028.jpg" alt="#" class="img-fluid">
-                    <div class="news-title">
-                        <p>Nov 19, 2018 • Travelling</p>
-                        <h5>A getaway to lonely Island of Maldives</h5>
-                        <p class="blog2-thumbnail-name">By Ankita Luthar</p>
-
-                        <a href="blog-detail.html" class="blog2-link">Read More ➝</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 article-first">
-                <div class="news-block">
-                    <img src="https://via.placeholder.com/960x1028.jpg" alt="#" class="img-fluid">
-                    <div class="news-title">
-                        <p>Nov 19, 2018 • Restaurants</p>
-                        <h5>My favorite Italian cuisine you're gonna love</h5>
-                        <p class="blog2-thumbnail-name">By Ankita Luthar</p>
-
-                        <a href="blog-detail.html" class="blog2-link">Read More ➝</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3 article-first">
-                <div class="news-block">
-                    <img src="https://via.placeholder.com/960x1028.jpg" alt="#" class="img-fluid">
-                    <div class="news-title">
-                        <p>Nov 19, 2018 • Events</p>
-                        <h5>Electric band show at Amsterdam</h5>
-                        <p class="blog2-thumbnail-name">By Ankita Luthar</p>
-
-                        <a href="blog-detail.html" class="blog2-link">Read More ➝</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 article-first">
-                <div class="news-block">
-                    <img src="https://via.placeholder.com/960x1028.jpg" alt="#" class="img-fluid">
-                    <div class="news-title">
-                        <p>Nov 19, 2018 • Culture</p>
-                        <h5>Different Countries and the taste of food</h5>
-                        <p class="blog2-thumbnail-name">By Ankita Luthar</p>
-
-                        <a href="blog-detail.html" class="blog2-link">Read More ➝</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        
     </div>
 </section>
 
