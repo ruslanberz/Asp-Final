@@ -284,6 +284,7 @@
     <Compile Include="Models\VwAddData.cs" />
     <Compile Include="Models\VwAddPlace.cs" />
     <Compile Include="Models\VwHomeIndex.cs" />
+    <Compile Include="Models\VwHomeZibilleri.cs" />
     <Compile Include="Models\VwJson.cs" />
     <Compile Include="Models\VwPlaceDetails.cs" />
     <Compile Include="Models\VwPlaceShow.cs" />

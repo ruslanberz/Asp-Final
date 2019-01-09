@@ -10,8 +10,7 @@ namespace ASP_Final.Models
         public List<Category> Categories { get; set; }
         public List<Place> Places { get; set; }
         public List<City> Cities { get; set; }
-        public List<Place> TopPlaces { get; set; }
-        public List<City>  TopCities { get; set; }
+        public List<VwHomeZibilleri> Zibiller { get; set; }
 
     }
 }

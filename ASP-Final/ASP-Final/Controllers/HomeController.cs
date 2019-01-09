@@ -22,45 +22,21 @@ namespace ASP_Final.Controllers
             VwHomeIndex home = new VwHomeIndex();
             home.Categories = db.Categories.ToList();
             home.Places = db.Places.ToList();
-            home.Cities = db.Cities.ToList(); //это надо поменять
-            //List<Vw_rating> RatingList = new List<Vw_rating>();
-     
-            //int commentCounter=0;
-            //double ratingBuffer = 0;
-            //foreach (Place item in db.Places)
-            //{
-            //    List < Comment > temp = db.Comments.Where(x => x.PlaceId == item.Id).ToList();
-            //    if (temp!=null)
-            //    {
-            //        foreach (var comment in temp)
-            //        {
-            //            ratingBuffer += comment.Rating;
-            //            commentCounter++;
+            home.Cities = db.Cities.ToList();
+            home.Zibiller = db.Places.Select(x => new VwHomeZibilleri
+            {
+                Id = x.Id,
+                Title = x.Name,
+                Slogan = x.Slogan,
+                CategoryName = x.Category.Name,
+                CategoryIcon = x.Category.Icon,
+                CityName = x.City.Name,
+                PhotoName = x.Photos.FirstOrDefault().PhotoName,
+                CommentCount = x.Comments.Count(),
+                Rating = x.Comments.Count()!=0? Math.Round(x.Comments.Average(y => y.Rating),1):0,
+                WorkHours =x.WorkHours.ToList()
 
-            //        }
-
-            //        ratingBuffer /= commentCounter;
-
-            //    }
-            //    else
-            //    {
-            //        ratingBuffer = 0;
-            //    }
-            //    Vw_rating buf = new Vw_rating();
-            //    buf.Ids = item.Id;
-            //    buf.Rating = ratingBuffer;
-            //    RatingList.Add(buf);
-                
-            //}
-
-            //List<Vw_rating> Sorted = RatingList.OrderByDescending(x => x.Rating).ToList();
-            //List<Vw_rating> Take3 = Sorted.Take(3).ToList();
-            //foreach (var item in Take3)
-            //{
-            //    home.TopPlaces.Add(db.Places.Find(item.Ids));
-            //}
-
-
+            }).OrderByDescending(z => z.Rating).Take(3).ToList();
             return View(home);
         }
         [HttpPost]
