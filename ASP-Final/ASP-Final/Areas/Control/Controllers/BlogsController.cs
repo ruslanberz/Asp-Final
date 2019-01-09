@@ -54,17 +54,17 @@ namespace ASP_Final.Areas.Control.Controllers
         {
             if (SmallImage!=null)
             {
-                string filename = DateTime.Now.ToString("yyyyMMddHHmmssnnn")+SmallImage.FileName;
-                string path = Path.Combine(Server.MapPath("~/Public/images/upload"),filename);
+                string filename1 = DateTime.Now.ToString("yyyyMMddHHmmssnnn")+SmallImage.FileName;
+                string path = Path.Combine(Server.MapPath("~/Public/images/upload"),filename1);
                 SmallImage.SaveAs(path);
-                blog.SmallImage = filename;
+                blog.SmallImage = filename1;
 
 
             }
 
             if (BigImage!=null)
             {
-                string filename = DateTime.Now.ToString("yyyyMMddHHmmssnnn") + BigImage .FileName;
+                string filename = DateTime.Now.ToString("yyyyMMddHHmmssnnn") + BigImage.FileName;
                 string path = Path.Combine(Server.MapPath("~/Public/images/upload"), filename);
                 BigImage.SaveAs(path);
                 blog.SmallImage = filename;
@@ -125,7 +125,7 @@ namespace ASP_Final.Areas.Control.Controllers
                     }
                     else
                     {
-                        blog.BigImage = "пусто";
+                        blog.SmallImage = "пусто";
                     }
                    
                 } 

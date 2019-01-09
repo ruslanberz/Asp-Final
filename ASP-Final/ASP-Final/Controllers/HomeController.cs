@@ -23,6 +23,8 @@ namespace ASP_Final.Controllers
             home.Categories = db.Categories.ToList();
             home.Places = db.Places.ToList();
             home.Cities = db.Cities.ToList();
+            int count = db.Places.Count();
+            home.AllPlaceCount = count;
             home.Zibiller = db.Places.Select(x => new VwHomeZibilleri
             {
                 Id = x.Id,
@@ -37,6 +39,31 @@ namespace ASP_Final.Controllers
                 WorkHours =x.WorkHours.ToList()
 
             }).OrderByDescending(z => z.Rating).Take(3).ToList();
+
+            List<City> allC = db.Cities.ToList();
+            List<VwTopCities> Cities = new List<VwTopCities>();
+          
+
+            foreach (var item in allC)
+            {
+                int CityCount = db.Places.Where(c => c.CityId == item.Id).Count();
+                VwTopCities current = new VwTopCities();
+                current.City = item;
+                if (string.IsNullOrEmpty(item.Photo))
+                {
+                    current.City.Photo = "noimage.png"; 
+                }
+               
+
+                current.PlaceCount = CityCount;
+                Cities.Add(current);
+            }
+            List<VwTopCities> sort= Cities.OrderByDescending(o=>o.PlaceCount).Take(4).ToList();
+            home.One = sort.ElementAt(0);
+            home.Two = sort.ElementAt(1);
+            home.Three = sort.ElementAt(2);
+            home.Four = sort.ElementAt(3);
+            home.LatestBlogs = db.Blogs.OrderByDescending(o => o.Date).Take(4).ToList();
             return View(home);
         }
         [HttpPost]

@@ -11,7 +11,7 @@
         <div class="row d-flex justify-content-center">
             <div class="hero-title">
                 <h1>What’s your plan today?</h1>
-                <h3>Find out perfect place to hangout in your city from over 2581 listings </h3>
+                <h3>Find out perfect place to hangout in your city from over @Model.AllPlaceCount listings </h3>
             </div>
         </div>
 
@@ -152,13 +152,13 @@
                 int i = 1;
                 <div class="col-md-4 card-1">
                     <div class="card">
-                        <img class="card-img-top" src="~/Public/images/upload/@item.PhotoName" alt="Card image cap">
+                        <a href="@Url.Action("details","place",new {id=item.Id })"><img class="card-img-top" src="~/Public/images/upload/@item.PhotoName" alt="Card image cap" style="height:320px;"></a> 
                         <div class="card-body">
                             <h5 class="card-title">@item.Title</h5>
                             <ul class="card-rating d-flex justify-content-between align-items-center">
                                 <li class="card-rating-green">@item.Rating</li>
                                 <li class="flex-grow-1">@item.CommentCount</li>
-                                <li class="category"><i class="@item.CategoryName"></i>@item.CategoryName</li>
+                                <li class="category"><i class="@item.CategoryIcon"></i>@item.CategoryName</li>
                             </ul>
                             <p class="card-text">
                                 @item.Slogan
@@ -218,12 +218,12 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <a href="#">
+                <a >
                     <div class="grid">
-                        <img src="https://via.placeholder.com/1334x1280.jpg" alt="#" class="img-fluid">
+                        <img src="~/Public/images/upload/@Model.One.City.Photo" alt="#" class="img-fluid" style="height:690px; width:720px;">
                         <div class="effect-caption-wrap">
-                            <h3>India</h3>
-                            <p class="listing">2400+ Listings</p>
+                            <h3>@Model.One.City.Name</h3>
+                            <p class="listing">@Model.One.PlaceCount Listings</p>
                         </div>
                     </div>
                 </a>
@@ -232,12 +232,12 @@
             <div class="col-md-6">
                 <div class="row detailed-item-mr">
                     <div class="col-md-12">
-                        <a href="#">
+                        <a >
                             <div class="grid">
-                                <img src="https://via.placeholder.com/1920x875.jpg" alt="#" class="img-fluid">
+                                <img src="~/Public/images/upload/@Model.Two.City.Photo" alt="#" class="img-fluid" style="height:328px;width:720px;">
                                 <div class="effect-caption-wrap">
-                                    <h3>New York</h3>
-                                    <p class="listing">3100+ Listings</p>
+                                    <h3>@Model.Two.City.Name</h3>
+                                    <p class="listing">@Model.Two.PlaceCount Listings</p>
                                 </div>
                             </div>
                         </a>
@@ -245,23 +245,23 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <a href="#">
+                        <a >
                             <div class="grid">
-                                <img src="https://via.placeholder.com/1000x963.jpg" alt="#" class="img-fluid">
+                                <img src="~/Public/images/upload/@Model.Three.City.Photo" alt="#" class="img-fluid" style="height:332px;width:345px;">
                                 <div class="effect-caption-wrap">
-                                    <h3>Singapore</h3>
-                                    <p class="listing">900+ Listings</p>
+                                    <h3>@Model.Three.City.Name  </h3>
+                                    <p class="listing">@Model.Three.PlaceCount Listings</p>
                                 </div>
                             </div>
                         </a>
                     </div>
                     <div class="col-md-6">
-                        <a href="#">
+                        <a >
                             <div class="grid">
-                                <img src="https://via.placeholder.com/1000x963.jpg" alt="#" class="img-fluid">
+                                <img src="~/Public/images/upload/@Model.Four.City.Photo" alt="#" class="img-fluid" style="height:332px;width:345px;">
                                 <div class="effect-caption-wrap">
-                                    <h3>California</h3>
-                                    <p class="listing">850+ Listings</p>
+                                    <h3>@Model.Four.City.Name</h3>
+                                    <p class="listing">@Model.Four.PlaceCount Listings</p>
                                 </div>
                             </div>
                         </a>
@@ -340,54 +340,23 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 col-lg-3 article-first">
-                <div class="news-block">
-                    <img src="https://via.placeholder.com/960x1028.jpg" alt="#" class="img-fluid">
-                    <div class="news-title">
-                        <p>Nov 18, 2018 - Restaurants</p>
-                        <a href="#">
-                            <h5>Lorem ipsum dolor sit amet consectetur adipiscing</h5>
-                        </a>
-                        <p>By <a href="#">Ruchika Megh</a></p>
+            @foreach (var item in Model.LatestBlogs)
+            {
+                <div class="col-md-6 col-lg-3 article-first">
+                    <div class="news-block" style="height:450px"> 
+                        <a href="@Url.Action("details","blog",new { Id=item.Id})"><img src="~/Public/images/upload/@item.SmallImage" alt="@Url.Action("detalis","blog",new {Id=item.Id })" class="img-fluid" style="height:250px"></a> 
+                        <div class="news-title">
+                            <p>@item.Date.ToShortDateString() - @item.Categ</p>
+                            <a href="#">
+                                <h5>@item.Title</h5>
+                            </a>
+                            
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-3 article-first">
-                <div class="news-block">
-                    <img src="https://via.placeholder.com/960x1028.jpg" alt="#" class="img-fluid">
-                    <div class="news-title">
-                        <p>Nov 18, 2018 - Travelling</p>
-                        <a href="">
-                            <h5>Lorem ipsum dolor sit amet consectetur adipiscing</h5>
-                        </a>
-                        <p>By <a href="#">Allen Martin</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 article-first">
-                <div class="news-block">
-                    <img src="https://via.placeholder.com/960x1028.jpg" alt="#" class="img-fluid">
-                    <div class="news-title">
-                        <p>Nov 18, 2018 - Culture</p>
-                        <a href="">
-                            <h5>Lorem ipsum dolor sit amet consectetur adipiscing</h5>
-                        </a>
-                        <p>By <a href="#">David Truce</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 article-first">
-                <div class="news-block">
-                    <img src="https://via.placeholder.com/960x1028.jpg" alt="#" class="img-fluid">
-                    <div class="news-title">
-                        <p>Nov 18, 2018 - Events</p>
-                        <a href="">
-                            <h5>Lorem ipsum dolor sit amet consectetur adipiscing</h5>
-                        </a>
-                        <p>By <a href="#">Charles S</a></p>
-                    </div>
-                </div>
-            </div>
+            }
+
+
         </div>
         <div class="row justify-content-center">
             <div class="col-md-12">

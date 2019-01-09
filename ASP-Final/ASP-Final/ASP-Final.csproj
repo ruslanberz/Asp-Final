@@ -290,6 +290,7 @@
     <Compile Include="Models\VwPlaceShow.cs" />
     <Compile Include="Models\VwProfile.cs" />
     <Compile Include="Models\VwReaction.cs" />
+    <Compile Include="Models\VwTopCities.cs" />
     <Compile Include="Models\WorkHour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
