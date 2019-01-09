@@ -9,6 +9,7 @@ namespace ASP_Final.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        
         public string Text { get; set; }
         public DateTime Date { get; set; }
         public string Categ { get; set; }

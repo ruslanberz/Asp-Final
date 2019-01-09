@@ -244,8 +244,9 @@ C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migratio
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.dbChanges.resources
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.ChangeTimeFormat.resources
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.dbChangesAddUSerId.resources
-C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP-Final.csprojAssemblyReference.cache
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.categorieschange.resources
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.comment.resources
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.Blog.resources
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.AdminTableAdd.resources
+C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP-Final.csprojAssemblyReference.cache
+C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.MainPAgeDbFIx.resources

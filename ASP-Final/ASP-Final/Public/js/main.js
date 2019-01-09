@@ -160,7 +160,31 @@
 
     });
   
+    $(".PlaceBlyat").click(function (e) {
+        e.preventDefault();
+        console.log("dcd");
+        $.ajax({
+            url: "/home/checklogin",
+            type: "post",
+            dataType: "json",
+            success: function (response) {
+                if (response.status === 200) {
 
+                    window.location = response.url;
+
+
+                }
+
+                else {
+
+                    $("#LoginModal").modal("show");
+                }
+            }
+        });
+
+
+
+    });
 
     $("#LoginForm").submit(function (ev) {
 

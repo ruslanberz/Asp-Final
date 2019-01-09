@@ -17,7 +17,7 @@ namespace ASP_Final.Areas.Control
             context.MapRoute(
                 "Control_default",
                 "Control/{controller}/{action}/{id}",
-                new { controller="Home", action = "Index", id = UrlParameter.Optional },
+                new {controller="login", action = "Index", id = UrlParameter.Optional },
                 new[] { "ASP_Final.Areas.Control.Controllers" }
             );
         }

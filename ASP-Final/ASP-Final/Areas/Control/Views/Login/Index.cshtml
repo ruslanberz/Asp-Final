@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -8,13 +13,13 @@
     <meta name="author" content="">
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
     <!-- Bootstrap Core CSS -->
-    <link href="~/Areas/Control/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Areas/Control/Public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
-    <link href="~/Areas/Control/Public/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="~/Areas/Control/Public/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="~/Areas/Control/Public/css/sb-admin-2.css" rel="stylesheet">
+    <link href="~/Areas/Control/Public/dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="~/Areas/Control/Public/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Areas/Control/Public/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -31,17 +36,17 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" action="@Url.Action("login","login")" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" id="email" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" id="password" type="password" value="">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                 </div>
-
+                                
                                 <!-- Change this to a button or input when using this as a form -->
-                                <button type="submit" id="login" class="btn btn-lg btn-success btn-block">Login</button>
+                                <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                             </fieldset>
                         </form>
                     </div>
@@ -50,13 +55,12 @@
         </div>
     </div>
     <!-- jQuery -->
-    <script src="~/Areas/Control/Public/jquery/jquery.min.js"></script>
+    <script src="~/Areas/Control/Public/vendor/jquery/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="~/Areas/Control/Public/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Areas/Control/Public/vendor/bootstrap/js/bootstrap.min.js"></script>
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="~/Areas/Control/Public/metisMenu/metisMenu.min.js"></script>
+    <script src="~/Areas/Control/Public/vendor/metisMenu/metisMenu.min.js"></script>
     <!-- Custom Theme JavaScript -->
-    <script src="~/Areas/Control/Public/js/sb-admin-2.js"></script>
-    <script src="~/Areas/Control/Public/morrisjs/morris.min.js"></script>
+    <script src="~/Areas/Control/Public/dist/js/sb-admin-2.js"></script>
 </body>
 </html>
