@@ -75,7 +75,28 @@ namespace ASP_Final.Controllers
 
         public JsonResult Create(Place place, HttpPostedFileBase[] files)
         {
-            if (place!=null)
+
+            if (place.Name==null)
+            {
+                return Json(new
+                {
+                    status = 401,
+                    message = "You have to specify the name of place!"
+
+                }, JsonRequestBehavior.AllowGet);
+            }
+            else if (place.CategoryId<=0)
+            {
+                return Json(new
+                {
+                    status = 401,
+                    message = "You have to specify the category of place!"
+
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+          
+            else
             {
                 place.UserId = (int)(Session["User"]);
                 db.Places.Add(place);
@@ -88,7 +109,7 @@ namespace ASP_Final.Controllers
             {
                 foreach (HttpPostedFileBase foto in files)
                 {
-                    if (foto.ContentLength>0)
+                    if (foto!= null&&foto.ContentLength > 0)
                     {
                         string filename = DateTime.Now.ToString("yyyyMMddHHmmssfff") + foto.FileName;
                         string path = Path.Combine(Server.MapPath("~/Public/images/upload"), filename);

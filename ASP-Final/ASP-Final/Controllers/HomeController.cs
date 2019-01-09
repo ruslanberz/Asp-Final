@@ -79,6 +79,8 @@ namespace ASP_Final.Controllers
                 },JsonRequestBehavior.AllowGet);
             }
 
+           
+
             User chk =db.Users.FirstOrDefault(u => u.Email == user.Email);
             if (chk!=null)
             {
@@ -91,7 +93,14 @@ namespace ASP_Final.Controllers
                         url = "/home/index"
                     }, JsonRequestBehavior.AllowGet);
                 }
-
+                else
+                {
+                    return Json(new
+                    {
+                        status = 401,
+                        message = "Wrong usernme/password combination"
+                    }, JsonRequestBehavior.AllowGet);
+                }
             }
 
            

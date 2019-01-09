@@ -6,11 +6,11 @@
 
         if ($(this).prop("checked") === true) {
             ser.push($(this).data("id"));
-            console.log(ser);
+            
 
         } else {
             ser.splice($.inArray($(this).data("id"), ser), 1);
-            console.log(ser);
+            
         }
     });
 
@@ -22,7 +22,7 @@
         //Iterating through each files selected in fileInput
         for (var i = 0; i < files.length; i++) {
             //Appending each file to FormData object
-            console.log(files[i].name);
+            
             formdata.append(files[i].name, files[i]);
         }
         //console.log(servis);
@@ -70,34 +70,42 @@
             contentType: false,
             processData: false,
             success: function (data) {
-                console.log(data);
-                console.log("buradir0");
-                forCreateTwo = data.placeId;
-                console.log(forCreateTwo);
+                if (data.status == 401) {
 
-
-                var postData = {
-                    ser: ser,
-                    times: times,
-                    placeId: forCreateTwo
+                    toastr["error"](data.message);
                 }
 
-                console.log("bu posDatadir"+postData);
+                else {
 
-                $.ajax({
-                    type: "post",
-                    url: "/place/create2",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: JSON.stringify(postData),
-                    success: function (data) {
-                        console.log(data);
-                        toastr["success"](data.message);
-                        setInterval(function () { window.location = data.url; }, 2000);
-                        
-                        
+                    forCreateTwo = data.placeId;
+
+
+
+                    var postData = {
+                        ser: ser,
+                        times: times,
+                        placeId: forCreateTwo
                     }
-                });
+
+
+
+                    $.ajax({
+                        type: "post",
+                        url: "/place/create2",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: JSON.stringify(postData),
+                        success: function (data) {
+
+                            toastr["success"](data.message);
+                            setInterval(function () { window.location = data.url; }, 2000);
+
+
+                        }
+                    });
+
+                }
+               
             },
             error: function (xhr, error, status) {
                 console.log(error, status);
