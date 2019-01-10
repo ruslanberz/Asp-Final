@@ -13,13 +13,14 @@ namespace ASP_Final.Controllers
 
         AspFinalContext db = new AspFinalContext();
         // GET: Blog
+        //BLOGUN ANA SEHIFESI
         public ActionResult Index()
         {
             List<Blog> blogs = db.Blogs.ToList();
             
             return View(blogs);
         }
-
+        //SECILMISH BLOGUN DETAILS-A KECHID
         public ActionResult Details(int? Id)
         {
             if (Id != 0&&Id!=null)

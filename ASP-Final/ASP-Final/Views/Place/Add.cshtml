@@ -7,6 +7,7 @@
             <div class="col-md-10">
                 <div class="title-block title-block_subpage">
                     <h2>Add Listing</h2>
+                    @*RETURN TO HOMEPAGE*@
                     <p> <a href="@Url.Action("index","home")"> Home</a> / Add Listing</p>
                 </div>
             </div>
@@ -22,6 +23,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="listing-wrap">
+                    @*ADD NEW PLACE FORM*@
                     <form id="AddForm"  method="post" enctype="multipart/form-data" action="@Url.Action("create","place")">
                         <!-- General Information -->
                         <div class="listing-title">
@@ -531,7 +533,7 @@
 </section>
 
 
-
+@*GET SERVICES ON SELECTION CHANGE FUNCTION*@
 <script>
     function GetServices() {
 

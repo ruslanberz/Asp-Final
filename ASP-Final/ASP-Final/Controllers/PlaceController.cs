@@ -20,6 +20,8 @@ namespace ASP_Final.Controllers
         {
             return View();
         }
+
+        //HERE FILLS ALL DATA AT PLACE ADD VIEW (CATEGORY AND SERVICES LIST)
         [Auth]
         public ActionResult Add() {
 
@@ -30,7 +32,7 @@ namespace ASP_Final.Controllers
 
         }
 
-
+        //GENERATES SERVICES LIST ON CATEGORY CHANGE AT ADD PLACE VIEW
         [HttpPost]
         public JsonResult GetServices(int id)
         {
@@ -71,6 +73,10 @@ namespace ASP_Final.Controllers
 
         }
 
+        //BURADA GORECEKSINIZ- COX ENTIQE HELL YAZDIQ(GICGICE DE DEMEK OLAR)
+        //AJAXLA BUTUN LAZIM OLAN MELUMATI 1 REYSE GETIRE BILMEDIK)))ONA GORE BIR AJAXIN ICHINDE- SUCCESINDE IKINCI AJAX YAZDIQ
+        //PLACEDE 2+ SHEKIL PLANDA - FORMDATANI GETIRMIRDI- NE GEDER VURUSHDUM -AGLIMABATAN BU OLDU
+        //SOHBET CREATE VE CREATE2 METHODLARDAN GEDIR
         [HttpPost]
 
         public JsonResult Create(Place place, HttpPostedFileBase[] files)
@@ -203,16 +209,17 @@ namespace ASP_Final.Controllers
 
 
        
-
+        //BU METHOD SEARCH KRITERIYALARINA UYGUN OLAN PLACELRI PLACE/SHOW VIEWDA DUZUR,MUVAFIQ TAPILMADISA(PLACE COUNT==0) - BIR DEFAULT ERROR PAGE REDIRECT EDIR
         public ActionResult Show (string Name,string City)
 
                
         {
 
             VwPlaceShow result = new VwPlaceShow();
-            result.IsOpenedNow = new List<int>();
-            result.IsAllSame = true;
+            result.IsOpenedNow = new List<int>(); //THIS IS A LIST TO GRAB IS OPENED NOW STATE
+            result.IsAllSame = true; //HERE I SPECIFY IS SEARCH INITIALIZED ONLY BY CATEGORY/CITY OR BY BOTH TO RENDER IT AT SHOW VIEW OF PLACE
             result.Services = db.Services.ToList();
+            result.Ratings = new List<double>();
             List<CategoryService> cs = new List<CategoryService>();
             //Bu massive Name gelmeyende Category id-leri yigilir. Show html-de butun muvafiq servisleri getirmek uchun
           List<int> ArrayOfPlaceCategories= new List<int>();
@@ -220,17 +227,43 @@ namespace ASP_Final.Controllers
             {
                 if (Name != "" && City == "")
                 {
-                    var places = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").Where(x => x.Category.Name == Name&&x.Status==true);
+                    var places = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").Include("Comments").Where(x => x.Category.Name == Name&&x.Status==true);
+                    
                     var list = new List<Place>(places);
+                    
                     result.Places = list;
+
+                    foreach (var item in result.Places)
+                    {
+                        if (item.Comments.Count() > 0)
+                        {
+                            result.Ratings.Add( Math.Round(item.Comments.Average(z => z.Rating), 1));
+                        }
+                        else
+                        {
+                            result.Ratings.Add(0);
+                        }
+                    }
+
 
                 }
                 else if (City != "" && Name == "")
                 {
-                    var places = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").Where(x => x.City.Name == City && x.Status == true);
+                    var places = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").Include("Comments").Where(x => x.City.Name == City && x.Status == true);
                     var list = new List<Place>(places);
                     result.Places = list;
-                    
+                    foreach (var item in result.Places)
+                    {
+                        if (item.Comments.Count() > 0)
+                        {
+                            result.Ratings.Add(Math.Round(item.Comments.Average(z => z.Rating), 1));
+                        }
+                        else
+                        {
+                            result.Ratings.Add(0);
+                        }
+                    }
+
                     foreach (var item in result.Places)
                     {
                         ArrayOfPlaceCategories.Add(item.CategoryId);
@@ -240,9 +273,20 @@ namespace ASP_Final.Controllers
                 }
                 else
                 {
-                    var places = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").Where(x => x.City.Name == City&&x.Category.Name==Name && x.Status == true);
+                    var places = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").Include("Comments").Where(x => x.City.Name == City&&x.Category.Name==Name && x.Status == true);
                     var list = new List<Place>(places);
                     result.Places = list;
+                    foreach (var item in result.Places)
+                    {
+                        if (item.Comments.Count() > 0)
+                        {
+                            result.Ratings.Add(Math.Round(item.Comments.Average(z => z.Rating), 1));
+                        }
+                        else
+                        {
+                            result.Ratings.Add(0);
+                        }
+                    }
                 }
             }
 
@@ -288,7 +332,7 @@ namespace ASP_Final.Controllers
             }
         }
 
-       
+       //SECILMISH PLACEIN DETAILSIN EMALI
         public ActionResult Details(int? id)
         {
             if (id==null)
@@ -328,6 +372,7 @@ namespace ASP_Final.Controllers
             return View(details);
         }
 
+        //COMMENTIN ELAVE OLUNMASI
         [HttpPost]
         [Auth]
         public JsonResult PublishComment(string Comment, int ratingvalue, int PlaceId, HttpPostedFileBase[] filess )
@@ -380,6 +425,8 @@ namespace ASP_Final.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+
+        //cOMMENTE LIKE QOYMAQ
         [HttpPost]
         [Auth]
         public JsonResult Hcomment(int CommentId, bool IsAdd)
@@ -437,6 +484,8 @@ namespace ASP_Final.Controllers
                 status=404
             }, JsonRequestBehavior.AllowGet);
         }
+
+        //COMMENTE UNLIKE QOYMAQ
         [HttpPost]
         [Auth]
         public JsonResult Uhcomment(int CommentId, bool IsAdd)

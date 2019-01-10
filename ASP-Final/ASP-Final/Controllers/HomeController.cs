@@ -15,7 +15,7 @@ namespace ASP_Final.Controllers
 
     {
         AspFinalContext db = new AspFinalContext();
-
+        //  HERE IS METHOD TO VIEW HOMEPAGE, ALL STATISTICS HERE
         public ActionResult Index()
         {
 
@@ -23,7 +23,7 @@ namespace ASP_Final.Controllers
             home.Categories = db.Categories.ToList();
             home.Places = db.Places.ToList();
             home.Cities = db.Cities.ToList();
-            int count = db.Places.Count();
+            int count = db.Places.Count();  //HERE  ALL PLACESCOUNTIS GRABBED- TO SHOW ON HOMEPAGE
             home.AllPlaceCount = count;
             home.Zibiller = db.Places.Select(x => new VwHomeZibilleri
             {
@@ -38,17 +38,18 @@ namespace ASP_Final.Controllers
                 Rating = x.Comments.Count()!=0? Math.Round(x.Comments.Average(y => y.Rating),1):0,
                 WorkHours =x.WorkHours.ToList()
 
-            }).OrderByDescending(z => z.Rating).Take(3).ToList();
+            }).OrderByDescending(z => z.Rating).Take(3).ToList(); //HERE IS LOCATED ALL NECESSARY DATA OF VIEW 
 
             List<City> allC = db.Cities.ToList();
             List<VwTopCities> Cities = new List<VwTopCities>();
           
 
             foreach (var item in allC)
-            {
+            {   //COUNTING PLACES IN EACH CITY
                 int CityCount = db.Places.Where(c => c.CityId == item.Id).Count();
                 VwTopCities current = new VwTopCities();
                 current.City = item;
+                //IF THERE ISNO PHOTO OF CITY -ASSIGN A DEFAULT NULL -IMAGE)
                 if (string.IsNullOrEmpty(item.Photo))
                 {
                     current.City.Photo = "noimage.png"; 
@@ -58,18 +59,28 @@ namespace ASP_Final.Controllers
                 current.PlaceCount = CityCount;
                 Cities.Add(current);
             }
+            //GRAB MOST FILLED FIRST 4 CITIESFOR STATISTIC
+
+
+            //MUELLIM, BILIREM BUNU DAHA SELIQELI YAZMAQ OLARDI- SEBRIM CATMADI KI DUZELDIM  
             List<VwTopCities> sort= Cities.OrderByDescending(o=>o.PlaceCount).Take(4).ToList();
             home.One = sort.ElementAt(0);
             home.Two = sort.ElementAt(1);
             home.Three = sort.ElementAt(2);
             home.Four = sort.ElementAt(3);
+            //BURA GEDER OLAN HISSEDEN SIHBET GEDIR 
+
+
+            //ORDER CITIES IN RIGHT WAY
             home.LatestBlogs = db.Blogs.OrderByDescending(o => o.Date).Take(4).ToList();
             return View(home);
         }
+
+        //LOGIN METHID
         [HttpPost]
         public JsonResult Login(User user)
 
-        {
+        {   //DEFAULT CHECK
             if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password))
             {
                 return Json(new
@@ -114,7 +125,7 @@ namespace ASP_Final.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-
+        //REGISTER NEW USER
         [HttpPost]
         public JsonResult Register (User user)
 
@@ -154,18 +165,22 @@ namespace ASP_Final.Controllers
 
         }
 
+        //PASSWORD GENERATOR FOR INRERNAL USE
         public ActionResult Generate()
 
         {
-            return Content(Crypto.HashPassword("kamran"));
+            return Content(Crypto.HashPassword("RuslanBerz"));
         }
 
+        //LOGOUT METHOD- NULLATES "User" ATTRIBUTE OF SESSION
         public ActionResult Logout() {
 
             Session["User"] = null;
             return RedirectToAction("index", "home");
 
         }
+
+        //METHOD TO CHECK IS USER LOGGED ID
         [HttpPost]
         public JsonResult checklogin()
 
@@ -191,6 +206,7 @@ namespace ASP_Final.Controllers
 
         }
 
+        //VALIDATION TO CHECK IF EMAIL IS ALREADY REGISTERED
         [HttpPost]
         public JsonResult emailvalidation(string Email)
         {
@@ -216,6 +232,7 @@ namespace ASP_Final.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+        //LIVE AUTOCOMPLETE FOR CATEGORY
         [HttpPost]
 
         public JsonResult Autocomplete(string Prefix)
@@ -227,6 +244,7 @@ namespace ASP_Final.Controllers
             return Json(Countries, JsonRequestBehavior.AllowGet);
         }
 
+        //LIVE AUTOCOMPLETE FOR CITY
         [HttpPost]
 
         public JsonResult AutocompleteCity(string Prefix)
@@ -238,6 +256,7 @@ namespace ASP_Final.Controllers
             return Json(Cities, JsonRequestBehavior.AllowGet);
         }
 
+        //RENDERS ALL PLACES PUBLISHED BY USER. CAN SEE THERE IF PLACE WERE APPROVED BY ADMIN
         [Auth]
         public ActionResult UserProfile()
         {
@@ -272,6 +291,7 @@ namespace ASP_Final.Controllers
 
         }
 
+        //REDIRECTION IF ANY ERROR OCCURED, 
         public ActionResult SearchError()
         {
             return View();

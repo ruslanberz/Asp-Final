@@ -13,6 +13,7 @@ namespace ASP_Final.Models
         public List<Service> Services { get; set; }
         public bool IsAllSame { get; set; }
         public List<int> IsOpenedNow { get; set; }
+        public List<double> Ratings { get; set; }
 
     }
 }
