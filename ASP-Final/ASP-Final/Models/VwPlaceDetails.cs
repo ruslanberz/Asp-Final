@@ -12,5 +12,6 @@ namespace ASP_Final.Models
         public List<Reaction> Reactions { get; set; }
         public WorkHour WorkHour { get; set; }
         public bool IsOpened { get; set; }
+        public double Rating { get; set; }
     }
 }

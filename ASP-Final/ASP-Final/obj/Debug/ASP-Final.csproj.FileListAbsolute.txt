@@ -118,9 +118,6 @@ C:\Users\Ruslan\source\repos\ASP-Final\ASP-Final\obj\Debug\ASP-Final.csproj.Core
 C:\Users\Ruslan\source\repos\ASP-Final\ASP-Final\obj\Debug\ASP-Final.csproj.CopyComplete
 C:\Users\Ruslan\source\repos\ASP-Final\ASP-Final\obj\Debug\ASP-Final.dll
 C:\Users\Ruslan\source\repos\ASP-Final\ASP-Final\obj\Debug\ASP-Final.pdb
-C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP-Final.csproj.CoreCompileInputs.cache
-C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP-Final.dll
-C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP-Final.pdb
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\bin\ApplicationInsights.config
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\bin\ASP-Final.dll.config
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\bin\ASP-Final.dll
@@ -236,9 +233,7 @@ C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\bin\Microsoft.AI.DependencyC
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\bin\Microsoft.AI.Web.xml
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP-Final.csproj.CopyComplete
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.init.resources
-C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP-Final.csproj.GenerateResource.cache
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.init2.resources
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.changes.resources
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.dbChanges.resources
@@ -249,4 +244,8 @@ C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migratio
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.Blog.resources
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.AdminTableAdd.resources
 C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP_Final.Migrations.MainPAgeDbFIx.resources
-C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP-Final.csprojAssemblyReference.cache
+C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP-Final.csproj.GenerateResource.cache
+C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP-Final.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP-Final.csproj.CopyComplete
+C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP-Final.dll
+C:\Users\User\Desktop\ASP-Final\ASP-Final\ASP-Final\obj\Debug\ASP-Final.pdb

@@ -271,5 +271,10 @@ namespace ASP_Final.Controllers
 
 
         }
+
+        public ActionResult SearchError()
+        {
+            return View();
+        }
     }
 }

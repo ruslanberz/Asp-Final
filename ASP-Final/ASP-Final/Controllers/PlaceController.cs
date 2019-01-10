@@ -246,7 +246,7 @@ namespace ASP_Final.Controllers
                 }
             }
 
-            if (result.Places!=null)
+            if (result.Places!=null&&result.Places.Count()>0)
             {
                
                 if (Name!="")
@@ -284,15 +284,28 @@ namespace ASP_Final.Controllers
             }
             else
             {
-                return new HttpNotFoundResult("Pleace specify correct search options");
+                return RedirectToAction("SearchError","Home");
             }
         }
 
-        public ActionResult Details(int id)
+       
+        public ActionResult Details(int? id)
         {
+            if (id==null)
+            {
+                return RedirectToAction("SearchError", "Home");
+            }
             VwPlaceDetails details = new VwPlaceDetails();
             WorkHour today = new WorkHour();
-            details.Place = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").FirstOrDefault(x=>x.Id==id);
+            details.Place = db.Places.Include("City").Include("Category").Include("Photos").Include("Comments").Include("PlaceServices").Include("WorkHours").FirstOrDefault(x=>x.Id==id);
+            if (details.Place.Comments.Count() > 0)
+            {
+                details.Rating = Math.Round(details.Place.Comments.Average(z => z.Rating),1);
+            }
+            else {
+                details.Rating = 0;
+            }
+            
             details.Comments = db.Comments.Include("User").Include("Reactions").Where(c=>c.PlaceId==id).ToList();
             details.Reactions = db.Reactions.Include("Comment").Where(r => r.Comment.PlaceId == id).ToList();
             

@@ -20,15 +20,15 @@ namespace ASP_Final.Controllers
             return View(blogs);
         }
 
-        public ActionResult Details(int Id)
+        public ActionResult Details(int? Id)
         {
-            if (Id != 0)
+            if (Id != 0&&Id!=null)
             {
                 Blog bg = db.Blogs.Find(Id);
                 return View(bg);
             }
 
-            return HttpNotFound();
+            return RedirectToAction("SearchError", "Home");
 
            
         }
