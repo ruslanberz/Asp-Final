@@ -220,14 +220,14 @@ namespace ASP_Final.Controllers
             {
                 if (Name != "" && City == "")
                 {
-                    var places = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").Where(x => x.Category.Name == Name);
+                    var places = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").Where(x => x.Category.Name == Name&&x.Status==true);
                     var list = new List<Place>(places);
                     result.Places = list;
 
                 }
                 else if (City != "" && Name == "")
                 {
-                    var places = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").Where(x => x.City.Name == City);
+                    var places = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").Where(x => x.City.Name == City && x.Status == true);
                     var list = new List<Place>(places);
                     result.Places = list;
                     
@@ -240,7 +240,7 @@ namespace ASP_Final.Controllers
                 }
                 else
                 {
-                    var places = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").Where(x => x.City.Name == City&&x.Category.Name==Name);
+                    var places = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").Where(x => x.City.Name == City&&x.Category.Name==Name && x.Status == true);
                     var list = new List<Place>(places);
                     result.Places = list;
                 }
@@ -264,7 +264,7 @@ namespace ASP_Final.Controllers
                     }
                     TimeSpan CurrentTime = DateTime.Now.TimeOfDay;
                     WorkHour TodayWorkTime = item.WorkHours.FirstOrDefault(x => x.WeekNo == CurrentWeekDay);
-                    if (CurrentTime > TodayWorkTime.OpenHour && CurrentTime < TodayWorkTime.CloseHour)
+                    if (CurrentTime >= TodayWorkTime.OpenHour && CurrentTime <= TodayWorkTime.CloseHour)
                     {
                         result.IsOpenedNow.Add(1);
                         counter++;
@@ -291,11 +291,27 @@ namespace ASP_Final.Controllers
         public ActionResult Details(int id)
         {
             VwPlaceDetails details = new VwPlaceDetails();
+            WorkHour today = new WorkHour();
             details.Place = db.Places.Include("City").Include("Category").Include("Photos").Include("PlaceServices").Include("WorkHours").FirstOrDefault(x=>x.Id==id);
             details.Comments = db.Comments.Include("User").Include("Reactions").Where(c=>c.PlaceId==id).ToList();
             details.Reactions = db.Reactions.Include("Comment").Where(r => r.Comment.PlaceId == id).ToList();
-
-
+            
+             today = details.Place.WorkHours.Where(w => w.WeekNo == (int)DateTime.Now.DayOfWeek).FirstOrDefault();
+            if ((int)DateTime.Now.DayOfWeek == 0)
+            {
+                today = details.Place.WorkHours.Where(w => w.WeekNo == 7).FirstOrDefault();
+            }
+            details.WorkHour = today;
+            TimeSpan CurrentTime = DateTime.Now.TimeOfDay;
+            
+            if (CurrentTime >today.OpenHour && CurrentTime < today.CloseHour)
+            {
+                details.IsOpened = true;
+            }
+            else
+            {
+                details.IsOpened = false;
+            }
             return View(details);
         }
 

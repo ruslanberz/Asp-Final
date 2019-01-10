@@ -10,5 +10,7 @@ namespace ASP_Final.Models
         public Place Place  { get; set; }
         public List<Comment> Comments { get; set; }
         public List<Reaction> Reactions { get; set; }
+        public WorkHour WorkHour { get; set; }
+        public bool IsOpened { get; set; }
     }
 }

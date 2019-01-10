@@ -70,13 +70,14 @@
             contentType: false,
             processData: false,
             success: function (data) {
-                if (data.status == 401) {
+                console.log(data.status);
+                if (data.status === 401) {
 
                     toastr["error"](data.message);
                 }
 
                 else {
-
+                    console.log("peasedaboll");
                     forCreateTwo = data.placeId;
 
 
@@ -95,10 +96,15 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         data: JSON.stringify(postData),
-                        success: function (data) {
-
-                            toastr["success"](data.message);
-                            setInterval(function () { window.location = data.url; }, 2000);
+                        success: function (data2) {
+                            if (data2.status===200) {
+                                toastr["success"](data2.message);
+                                setInterval(function () { window.location = data2.url; }, 2000);
+                            }
+                            else {
+                                toastr["error"](data2.message);
+                            }
+                           
 
 
                         }

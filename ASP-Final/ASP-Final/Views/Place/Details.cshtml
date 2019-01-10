@@ -10,7 +10,7 @@
                 {
                     <div class="swiper-slide">
                         <a href="~/Public/images/upload/@item.PhotoName" class="grid image-link">
-                            <img src="~/Public/images/upload/@item.PhotoName" style="width:33vw; height:auto" class="img-fluid" alt="#">
+                            <img src="~/Public/images/upload/@item.PhotoName" style="width:33vw; height:400px" class="img-fluid" alt="#">
                         </a>
                     </div>
                 }
@@ -34,7 +34,7 @@
             <div class="col-md-6">
                 <br />
                 <h5>@Model.Place.Name</h5>
-                <p><span>$$$</span>$$</p>
+                <span>|</span>
                 <p class="reserve-description">@Model.Place.Slogan</p>
             </div>
             <div class="col-md-6">
@@ -173,12 +173,12 @@
                                 </ul>
                                 <p>@item.Reactions.Where(x => x.CommentId == item.Id && x.Type == 1).Count() people rewiew as helpful</p>
                                 <p>@item.Reactions.Where(x => x.CommentId == item.Id && x.Type == 2).Count() people rewiew as bullshit</p>
-                                <button type="button" id="helpful" class="helpful @if (Session["User"]!=null)
-	{
-		 if (item.Reactions.Where(x => x.UserId == (int)Session["User"]).FirstOrDefault()!=null)
+                                <button type="button" id="helpful" class="helpful  @if (Session["User"] != null)
                                 {
-                                    if (item.Reactions.Where(x => x.UserId == (int)Session["User"]).FirstOrDefault().Type==1)
+                                    if (item.Reactions.Where(x => x.UserId == (int)Session["User"]).FirstOrDefault() != null)
                                     {
+                                        if (item.Reactions.Where(x => x.UserId == (int)Session["User"]).FirstOrDefault().Type == 1)
+                                        {
                                      @:hgreen
                                     }
 
@@ -186,12 +186,12 @@
                                 }   " data-id="@item.Id">
                                     <span class="icon-like"></span>Helpful
                                 </button>
-                                <button type="button" id="unhelpful" class="unhelpful @if (Session["User"]!=null)
-	{
-		 if (item.Reactions.Where(x => x.UserId == (int)Session["User"]).FirstOrDefault()!=null)
+                                <button type="button" id="unhelpful" class="unhelpful @if (Session["User"] != null)
                                 {
-                                    if (item.Reactions.Where(x => x.UserId == (int)Session["User"]).FirstOrDefault().Type==2)
+                                    if (item.Reactions.Where(x => x.UserId == (int)Session["User"]).FirstOrDefault() != null)
                                     {
+                                        if (item.Reactions.Where(x => x.UserId == (int)Session["User"]).FirstOrDefault().Type == 2)
+                                        {
                                      @:uhred
                                     }
 
@@ -201,7 +201,7 @@
                                 </button>
                             </div>
                         </div>
-                    }
+                                            }
                     <hr>
                 </div>
             </div>
@@ -223,10 +223,19 @@
                     </div>
                     <div class="address">
                         <span class="icon-clock"></span>
-                        <p>Mon - Sun 09:30 am - 05:30 pm </p>
-                        <a href="#" class="featured-open">OPEN NOW</a>
+                        <p> Today :  @Model.WorkHour.OpenHour.ToString("hh\\:mm") - @Model.WorkHour.CloseHour.ToString("hh\\:mm")</p>
+                        </br>
+                        @if (Model.IsOpened)
+                        {
+                            <a href="#" class="featured-open">OPEN NOW</a>
+                        }
+                        else
+                        {
+                            <a href="#" class="featured-open " style="color:red">CLOSE NOW</a>
+                        }
+
                     </div>
-                    <a href="#" class="btn btn-outline-danger btn-contact">SEND A MESSAGE</a>
+                    <br />
                 </div>
             </div>
         </div>

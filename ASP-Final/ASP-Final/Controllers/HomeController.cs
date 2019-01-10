@@ -148,8 +148,7 @@ namespace ASP_Final.Controllers
             {
                 status = 200,
                 message = "OK",
-                url = "/home/index"
-
+                url = "/home/index",
 
             }, JsonRequestBehavior.AllowGet);
 

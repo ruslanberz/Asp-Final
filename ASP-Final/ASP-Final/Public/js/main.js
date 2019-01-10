@@ -223,7 +223,41 @@
         });
         
     });
-  
+
+    $("#RegisterForm").submit(function (ev) {
+        ev.preventDefault();
+
+
+        $.ajax({
+            url: "/home/register",
+            type: "post",
+            dataType: "json",
+            data: $(this).serialize(),
+            success: function (response) {
+
+                if (response.status === 401) {
+
+                    toastr["error"](response.message);
+
+                }
+
+                if (response.status === 200) {
+
+                    toastr["success"](response.message);
+                    setInterval(function () { window.location = response.url; }, 2000);
+                }
+            
+
+            }
+    });
+
+
+    });
+
+
+
+
+   
     toastr.options = {
         "closeButton": false,
         "debug": false,

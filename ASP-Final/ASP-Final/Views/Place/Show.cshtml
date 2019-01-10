@@ -25,50 +25,13 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-md-8 featured-responsive">
-                    <div class="detail-filter">
-                        <p>Change Search options</p>
-                        <form class="filter-dropdown">
-                            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-                                <option selected>Best Match</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </form>
-                        <form class="filter-dropdown">
-                            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect1">
-                                <option selected>Restaurants</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </form>
-
-                    </div>
-
-                </div>
+             
 
             </div>
             <div class="map-responsive-wrap">
                 <a class="map-icon btn btn-block" href="#"><i class="icon-location-pin"></i> <small>OPEN LISTING IN MAP</small></a>
             </div>
-            @*<div class="row detail-checkbox-wrap">
-                    @foreach (var item in Model.Services)
-                    {
-                        <div class="col-12 col-md-6 col-lg-4">
-
-                            <div class="detail-checkbox">
-                                <div class="md-checkbox">
-                                    <input id="@item.Id" type="checkbox" >
-                                    <label for="@item.Id">@item.Name</label>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    }
-                </div>*@
+          
             <div class="row">
                 @if (Model.Places != null)
                 {
@@ -108,7 +71,7 @@
                                     }
                                     else
                                     {
-                                        <span>Closed FNow</span>
+                                        <span>Closed Now</span>
                                     }
 
 

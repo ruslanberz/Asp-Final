@@ -157,7 +157,7 @@
                             <h5 class="card-title">@item.Title</h5>
                             <ul class="card-rating d-flex justify-content-between align-items-center">
                                 <li class="card-rating-green">@item.Rating</li>
-                                <li class="flex-grow-1">@item.CommentCount</li>
+                                <li class="flex-grow-1">@item.CommentCount comment(s)</li>
                                 <li class="category"><i class="@item.CategoryIcon"></i>@item.CategoryName</li>
                             </ul>
                             <p class="card-text">
@@ -347,7 +347,7 @@
                         <a href="@Url.Action("details","blog",new { Id=item.Id})"><img src="~/Public/images/upload/@item.SmallImage" alt="@Url.Action("detalis","blog",new {Id=item.Id })" class="img-fluid" style="height:250px"></a> 
                         <div class="news-title">
                             <p>@item.Date.ToShortDateString() - @item.Categ</p>
-                            <a href="#">
+                            <a href="@Url.Action("details","blog",new { Id=item.Id})">
                                 <h5>@item.Title</h5>
                             </a>
                             

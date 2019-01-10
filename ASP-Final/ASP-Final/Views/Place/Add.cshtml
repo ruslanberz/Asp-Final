@@ -34,7 +34,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input id="Name" type="text" name="Name" class="form-control add-listing_form">
+                                    <input id="Name" type="text" name="Name" class="form-control add-listing_form" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -49,7 +49,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Category</label>
-                                    <select class="form-control add-listing_form" id="CategoryId" name="CategoryId" onchange="GetServices()">
+                                    <select class="form-control add-listing_form" id="CategoryId" name="CategoryId" onchange="GetServices()" required>
                                         <option>Please select category</option>
                                         @foreach (var item in Model.Categories)
                                         {
@@ -79,7 +79,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>City</label>
-                                    <select class="form-control bfh-countries" id="City" name="CityId" data-country="US">
+                                    <select class="form-control bfh-countries" id="City" name="CityId" data-country="US" required>
                                         @foreach (var item in Model.Cities)
                                         {
                                             <option data-id="@item.Id" value=@item.Id>@item.Name </option>
@@ -92,14 +92,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <input name="Address" id="Address" type="text" class="form-control add-listing_form">
+                                    <input name="Address" id="Address" type="text" class="form-control add-listing_form" required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Phone</label>
-                                    <input name="Phone" id="Phone" type="text" class="form-control add-listing_form">
+                                    <input name="Phone" id="Phone" type="text" class="form-control add-listing_form" required>
                                 </div>
                             </div>
 
@@ -125,7 +125,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="Description">Description</label>
-                                    <textarea class="form-control add-listing_form" name="Description" id="Description" rows="3"></textarea>
+                                    <textarea class="form-control add-listing_form" name="Description" id="Description" rows="3" required></textarea>
                                 </div>
                             </div>
 
@@ -154,12 +154,7 @@
                             </div>
                         </div>
                         <!--//End Add Gallery -->
-                        <!-- Amenities -->
-                        <div class="listing-title">
-                            <span class="ti-gift"></span>
-                            <h4>Amenities</h4>
-                            <p>Write Something General Information About Your Listing</p>
-                        </div>
+                      
                         <div class="row" id="services">
                         </div>
                         <!--//End Amenities -->

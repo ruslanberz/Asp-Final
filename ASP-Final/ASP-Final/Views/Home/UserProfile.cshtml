@@ -28,7 +28,7 @@
                         @foreach (var photo in @item.Photos.ToList().Take(1))
                         {   
 
-                            <a href="@Url.Action("detail", "SearchPlace", new {id = @item.Id})" style=" width: 470px;min-height: 300px;max-height: auto;
+                            <a href="@Url.Action("details", "Place", new {id = @item.Id})" style=" width: 470px;min-height: 300px;max-height: auto;
                               float: left;margin: 3px;padding: 3px;">
                                 <img style="max-width: 100%;height: 300px" class="card-img-top" src="~/Public/images/upload/@photo.PhotoName" alt="Card image cap">
                             </a>
